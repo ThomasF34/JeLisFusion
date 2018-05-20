@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  font-family: 'Lato', sans-serif;
+}
+
+.navbar{
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+}
+
+@media screen and (min-width: 1024px){
+  .navbarRightPart{
+    float:right
+  }
+}
