@@ -5,11 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { NavbarComponent } from "./navbar/navbar.component";
+import { CatalogComponent } from "./catalog/catalog.component";
+import { AccueilComponent } from './accueil/accueil.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    CatalogComponent,
+    AccueilComponent
   ],
   imports: [
     BrowserModule,
@@ -19,3 +23,4 @@ import { NavbarComponent } from "./navbar/navbar.component";
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
