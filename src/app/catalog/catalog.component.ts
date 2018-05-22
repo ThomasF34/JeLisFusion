@@ -20,5 +20,8 @@ export class CatalogComponent implements OnInit{
     this.bookService.getAllBooks().subscribe(books => {this.books = books});
   }
 
-  
+  trimSummary(summary){
+    var list = summary.split(".");
+    return list[0] + "." + list[1] + "." + list[2] + "..." ;
+  }
 }

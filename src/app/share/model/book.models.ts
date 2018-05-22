@@ -11,3 +11,4 @@ export interface Book {
   idCategory: number;
   idPublisher: number;
 }
+
