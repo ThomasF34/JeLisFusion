@@ -24,7 +24,8 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/img"
             ],
             "styles": [
               "src/styles.scss"
@@ -59,6 +60,13 @@
           "configurations": {
             "production": {
               "browserTarget": "KidsWorld:build:production"
+            }, "fr": {
+              "aot": true,
+              "outputPath": "dist/my-project-fr/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "i18nMissingTranslation": "error",
             }
           }
         },

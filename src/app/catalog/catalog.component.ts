@@ -16,7 +16,9 @@ export class CatalogComponent implements OnInit{
 
   ngOnInit(){
     //When we initializate the catalog component, we'll try to load all book from DB
-    this.bookService.getAllBooks().subscribe()
+    console.log('Initilizing Catalog Component');
+    this.bookService.getAllBooks().subscribe(books => {this.books = books});
   }
 
+  
 }

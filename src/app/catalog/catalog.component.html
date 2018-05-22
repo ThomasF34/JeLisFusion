@@ -1,5 +1,21 @@
 
   <h1 class="my-4">Catalogue</h1>
-  <ul>
-    <li *ngFor="let book of books"> {{book.titleBook}}</li>
-  </ul>
+
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 portfolio-item" *ngFor="let book of books">
+      <div class="card h-100">
+        <div class="card-header">
+          <h4 class="card-title"><a href="#">{{book.titleBook}}</a></h4>
+        </div>
+        <a href="#"><img class="cardImg" src="assets/img/{{book.idBook}}.png" alt="img {{book.titleBook}}"></a>
+        <div class="card-body">
+          <p class="card-text">{{book.summary}}</p>
+        </div>
+        <div class="card-footer">
+          <p class="card-text">{{book.idCategory}} <span style="float:right">{{book.price | currency:'EUR'}}</span></p>
+          <button type="button" class="btn btn-primary">Détails</button>
+          <button type="button" style="float:right" class="btn btn-success">Ajouter au panier</button>
+        </div>
+      </div>
+    </div>
+  </div>
