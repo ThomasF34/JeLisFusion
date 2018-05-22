@@ -32,8 +32,7 @@ CREATE TABLE `workshop`(
 
 CREATE TABLE `category`(
   `idCategory` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `minAge` int(10) UNSIGNED NOT NULL,
-  `maxAge` int(10) UNSIGNED NOT NULL,
+  `nameCategory` varchar(20) NOT NULL,
   CONSTRAINT pk_Cate PRIMARY KEY (idCategory)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

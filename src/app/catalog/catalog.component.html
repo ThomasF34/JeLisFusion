@@ -13,7 +13,7 @@
           <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
         </div>
         <div class="card-footer">
-          <p class="card-text">{{book.idCategory}}<span style="float:right">{{book.price | currency:'EUR'}}</span></p>
+          <p class="card-text">{{book.nameCategory}}<span style="float:right">{{book.price | currency:'EUR'}}</span></p>
           <button type="button" class="btn btn-primary">Détails</button>
           <button type="button" style="float:right" class="btn btn-success">Ajouter au panier</button>
         </div>
