@@ -66,7 +66,7 @@
               "i18nFile": "src/locale/messages.fr.xlf",
               "i18nFormat": "xlf",
               "i18nLocale": "fr",
-              "i18nMissingTranslation": "error",
+              "i18nMissingTranslation": "error"
             }
           }
         },
