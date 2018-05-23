@@ -20,8 +20,8 @@ module.exports.getAllBooks = function(req, callback) {
       console.log("Query sent");
       if (err) {
         console.log (err);
-        console.log('Impossible de récupérer les élèves');
-        return res.status(300).json("Impossible de récupérer vos élèves");
+        console.log("Cannot get books");
+        return res.status(300).json("Cannot get books");
       }
       console.log("Query successfully executed");
       //Retourner à la route
@@ -38,8 +38,8 @@ module.exports.getBookByID = function(req, idBook, callback){
         console.log("Query sent");
         if (err) {
           console.log(err);
-          console.log('Impossible de récupérer les élèves');
-          return res.status(300).json("Impossible de récupérer vos élèves");
+          console.log('Cannot get book #'+idBook);
+          return res.status(300).json('Cannot get book #'+idBook);
         }
         console.log("Query successfully executed");
         //Retourner à la route
