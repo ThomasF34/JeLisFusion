@@ -15,6 +15,7 @@ import {LOCALE_ID} from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { RegisterComponent } from './register/register.component';
+import { BookComponent } from './book/book.component';
 
 registerLocaleData(localeFr);
 
@@ -24,7 +25,8 @@ registerLocaleData(localeFr);
     NavbarComponent,
     CatalogComponent,
     AccueilComponent,
-    RegisterComponent
+    RegisterComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,

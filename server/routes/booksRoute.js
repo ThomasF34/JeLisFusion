@@ -6,8 +6,16 @@ const booksRoute = express.Router();
 //Call for controller
 var book = require('../controllers/book');
 
-// Renvoie toute les activités de la base de donnees
+
+booksRoute.get('/getBookByID/:idBook',(req, res) => {
+  console.log('Demande un seul book');
+  book.getBookByID(req, req.params.idBook, book => {
+    return res.status(200).json(book);
+  });
+});
+
 booksRoute.get('/getAllBooks',(req, res) => {
+  console.log(booksRoute);
   console.log('Dans bookRoute1');
   book.getAllBooks(req, books => {
     console.log('Dans bookRoute2');
