@@ -1,51 +1,56 @@
 <div class="generalContainer">
+  <div class="row headerBook">
+    <h1>{{book.titleBook}}</h1>
+  </div>
+
+
   <div class="row wow fadeIn">
 
     <!--Grid column-->
-    <div class="col-md-6 mb-4">
+    <div class="col-md-5">
 
-      <img src="assets/img/1.png" class="img-fluid" alt="">
+      <img src="assets/img/{{book.idBook}}.png" class="img-fluid" alt="">
 
     </div>
     <!--Grid column-->
 
     <!--Grid column-->
-    <div class="col-md-6 mb-4">
+    <div class="col-md-7 mb-4">
 
       <!--Content-->
       <div class="p-4">
 
         <div class="mb-3">
           <a href="">
-            <span class="badge purple mr-1">Category 2</span>
+            <span class="badge badge-primary badge-pill" style="font-size: 17px;">{{book.nameCategory}}</span>
           </a>
-          <a href="">
-            <span class="badge blue mr-1">New</span>
-          </a>
-          <a href="">
-            <span class="badge red mr-1">Bestseller</span>
-          </a>
+            <span *ngIf="book.nbStock > 0" class="badge badge-success badge-pill" style="font-size: 17px;">En stock</span>
+            <span *ngIf="book.nbStock <= 0" class="badge badge-danger badge-pill" style="font-size: 17px;">Rupture de stock</span>
         </div>
 
         <p class="lead">
           <span>{{book.price | currency:'EUR'}}</span>
         </p>
-        <p *ngIf="1" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
+        <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
 
 
         <strong>Résumé</strong>
 
-        <p>Maman et moi, on vit toutes les deux dans la savane. Mes parents m’ont adopté quand j’étais tout petit. Papa et maman sont nés dans deux pays différents. Avec mes deux papas, on va souvent au musée. Nous, on n’a pas d’enfant. Les animaux de ce livre à jouer s’alignent par familles, toutes semblables et toutes différentes. Au lecteur de les distinguer grâce aux indices du texte. Des familles monoparentales aux « tribus », en passant par les familles homoparentales et recomposées, personne n’est laissé de côté ! Un album sensible et tendre pour s’amuser, mais aussi pour apprendre de nos différences."</p>
+        <p class="text-justify">{{book.summary}}</p>
 
-        <form class="d-flex justify-content-left">
-          <!-- Default input -->
-          <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
-          <button class="btn btn-primary btn-md my-0 p" type="submit">Add to cart
-            <i class="fa fa-shopping-cart ml-1"></i>
-          </button>
+         <div *ngIf="book.personnalizedWord !== null">
+           <strong>Mot du libraire</strong>
+           <p class="text-justify">{{book.personnalizedWord}}</p>
+         </div>
 
-        </form>
+          <form class="d-flex justify-content-left">
+            <!-- Default input -->
+            <input type="number" value="1" aria-label="Search" class="form-control" style="width: 100px">
+            <button class="btn btn-primary btn-md CartBtn" type="submit">Ajouter au panier
+              <i class="fa fa-shopping-cart ml-1"></i>
+            </button>
 
+          </form>
       </div>
       <!--Content-->
 

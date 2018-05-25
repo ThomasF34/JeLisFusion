@@ -3,25 +3,45 @@ import {Observable} from "rxjs/internal/Observable";
 import {Book} from "../share/model/book.models";
 import {BookService} from "../share/service/book.service";
 
+
 @Component({
   selector: 'app-catalog',
   templateUrl: './catalog.component.html',
   styleUrls: ['./catalog.component.scss']
 })
 
-export class CatalogComponent implements OnInit{
+export class CatalogComponent implements OnInit {
   books: Observable<Book[]>;
+  categorie : string;
 
-  constructor(private bookService: BookService){}
+  constructor(private bookService: BookService) {
+  }
 
-  ngOnInit(){
+  ngOnInit() {
     //When we initializate the catalog component, we'll try to load all book from DB
     console.log('Initilizing Catalog Component');
-    this.bookService.getAllBooks().subscribe(books => {this.books = books});
+    this.bookService.getAllBooks().subscribe(books => {
+      this.books = books;
+      this.categorie = "";
+    });
   }
 
-  trimSummary(summary){
+  trimSummary(summary) {
     var list = summary.split(".");
-    return list[0] + "." + list[1] + "." + list[2] + "..." ;
+    return list[0] + "." + list[1] + "." + list[2] + "...";
   }
+
+  trier(categorie: string) {
+    if(categorie === undefined){
+      this.ngOnInit();
+    } else {
+      console.log('Asking for category ' + categorie);
+      this.bookService.getBooksByCat(categorie).subscribe(books => {
+        this.books = books;
+        this.categorie = categorie;
+      });
+    }
+  }
+
+
 }

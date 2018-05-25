@@ -3,7 +3,6 @@ let UNAUTHORIZED_USER = "Unauthorized user";
 let NOT_FOUND = "Student not found";
 
 
-
 /**
  * get_all
  *
@@ -46,4 +45,22 @@ module.exports.getBookByID = function(req, idBook, callback){
         callback(rows[0]);
       });
     });
+};
+
+module.exports.getBookByCat = function(req, category, callback){
+  //La requete
+  req.getConnection(function (err, connection) {
+    //
+    connection.query("select idBook, titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, nameCategory, namePublisher FROM Book B, Category C, Publisher P WHERE C.nameCategory = '" + category + "' AND B.idCategory = C.idCategory AND B.idPublisher = P.idPublisher;", function (err, rows, fields) {
+      console.log("Query sent");
+      if (err) {
+        console.log(err);
+        console.log('Cannot get book from '+category);
+        return res.status(300).json('Cannot get book from'+ category);
+      }
+      console.log("Query successfully executed");
+      //Retourner à la route
+      callback(rows);
+    });
+  });
 };
