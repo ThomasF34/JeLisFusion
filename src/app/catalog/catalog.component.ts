@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs/internal/Observable";
 import {Book} from "../share/model/book.models";
 import {BookService} from "../share/service/book.service";
+import {Author} from "../share/model/author.models";
 
 
 @Component({
@@ -22,12 +23,12 @@ export class CatalogComponent implements OnInit {
     console.log('Initilizing Catalog Component');
     this.bookService.getAllBooks().subscribe(books => {
       this.books = books;
-      this.categorie = "";
+      this.categorie = null;
     });
   }
 
   trimSummary(summary) {
-    var list = summary.split(".");
+    const list = summary.split(".");
     return list[0] + "." + list[1] + "." + list[2] + "...";
   }
 

@@ -1,10 +1,13 @@
 <div class="generalContainer">
-  <h1 class="my-4">Catalogue {{categorie}}</h1>
+  <h1 class="my-4">Catalogue <span *ngIf="categorie !== null">- {{categorie}}</span></h1>
   <div class="row categoryButtons">
     <button type="button" style="float:right" class="btn btn-primary" (click)="trier()">Tous les livres</button>
-    <button type="button" style="float:right" class="btn btn-success" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
+    <button type="button" style="float:right" class="btn btn-info" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
     <button type="button" style="float:right" class="btn btn-info" (click)="trier('6 à 9 ans')">6 à 9 ans</button>
-    <button type="button" style="float:right" class="btn btn-secondary" (click)="trier('Comics')">Comics</button>
+    <button type="button" style="float:right" class="btn btn-info" (click)="trier('9 à 13 ans')">9 à 13 ans</button>
+    <button type="button" style="float:right" class="btn btn-info" (click)="trier('À partir de 13 ans')">À partir de 13 ans</button>
+    <button type="button" style="float:right" class="btn btn-info" (click)="trier('À partir de 15 ans')">À partir de 15 ans</button>
+    <button type="button" style="float:right" class="btn btn-info" (click)="trier('Comics')">Comics</button>
   </div>
 
   <div class="row">

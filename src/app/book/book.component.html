@@ -28,19 +28,35 @@
             <span *ngIf="book.nbStock <= 0" class="badge badge-danger badge-pill" style="font-size: 17px;">Rupture de stock</span>
         </div>
 
-        <p class="lead">
-          <span>{{book.price | currency:'EUR'}}</span>
-        </p>
+        <dl class="row lead">
+          <dt class="col-sm-3">Prix</dt>
+          <dd class="col-sm-9">{{book.price | currency:'EUR'}}</dd>
+
+          <dt class="col-sm-3">Ecrit par</dt>
+          <dd class="col-sm-9 ">
+            <p style="margin-bottom: 3px;" *ngFor="let author of authors">{{author.fNameAuthor}} {{author.nameAuthor}}</p>
+          </dd>
+
+          <dt class="col-sm-3 align-middle">Edité par</dt>
+          <dd class="col-sm-9">{{book.namePublisher}}</dd>
+
+          <dt class="col-sm-3 align-middle">ISBN</dt>
+          <dd class="col-sm-9">{{book.ISBN}}</dd>
+        </dl>
+
+
         <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
 
 
-        <strong>Résumé</strong>
+        <strong class="headerSummary">Résumé</strong>
 
-        <p class="text-justify">{{book.summary}}</p>
+        <p class="text-justify summary">{{book.summary}}</p>
 
-         <div *ngIf="book.personnalizedWord !== null">
-           <strong>Mot du libraire</strong>
-           <p class="text-justify">{{book.personnalizedWord}}</p>
+         <div id="personnalizedWord" class="rounded" *ngIf="book.personnalizedWord !== null">
+           <strong class="headerPersonnalizedWord">Mot du libraire</strong>
+           <p class=" personnalizedWord text-justify">
+             {{book.personnalizedWord}}
+           </p>
          </div>
 
           <form class="d-flex justify-content-left">

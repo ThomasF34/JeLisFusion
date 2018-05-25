@@ -55,7 +55,7 @@ CREATE TABLE `book`(
   `ISBN` VARCHAR(20),
   `summary` text,
   `srcImage` varchar(30),
-  `price` int(10) UNSIGNED,
+  `price` float(4,2) UNSIGNED,
   `nbStock` int(10) UNSIGNED,
   `personnalizedWord` text,
   `trends` tinyint(1) DEFAULT '0',
@@ -63,12 +63,13 @@ CREATE TABLE `book`(
   `idPublisher` bigint(10) UNSIGNED,
   CONSTRAINT pk_Book PRIMARY KEY (idBook),
   CONSTRAINT fk_BookCategory FOREIGN KEY (idCategory) REFERENCES category(idCategory),
-  CONSTRAINT fk_BookPublisher FOREIGN KEY (idPublisher) REFERENCES Publisher(idPublisher)
+  CONSTRAINT fk_BookPublisher FOREIGN KEY (idPublisher) REFERENCES Publisher(idPublisher),
+  CONSTRAINT uniqueISBN UNIQUE (ISBN)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `written`(
-  `idBook` bigint(10) UNSIGNED NOT NULL,
   `idAuthor` bigint(10) UNSIGNED NOT NULL,
+  `idBook` bigint(10) UNSIGNED NOT NULL,
   CONSTRAINT pk_Written PRIMARY KEY (idBook,idAuthor),
   CONSTRAINT fk_WrittenBook FOREIGN KEY (idBook) REFERENCES Book(idBook),
   CONSTRAINT fk_WrittenAuthor FOREIGN KEY (idAuthor) REFERENCES AUTHOR(idAuthor)

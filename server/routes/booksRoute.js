@@ -23,7 +23,8 @@ booksRoute.get('/getAllBooks',(req, res) => {
   console.log('Dans bookRoute1');
   bookController.getAllBooks(req, books => {
     console.log('Dans bookRoute2');
-    return res.status(200).json(books);
+    res.responseCode = 404;
+    return res.json(books);
   });
 });
 
@@ -35,6 +36,18 @@ booksRoute.get('/cat/:category',(req, res) => {
       return res.status(303).json(books);
     } else {
       return res.status(200).json(books);
+    }
+  });
+});
+
+booksRoute.get('/:idBook/authors',(req, res) => {
+  console.log('Asking for authors');
+  bookController.getAuthorsByBookID(req, req.params.idBook, authors => {
+    if(authors === undefined){
+      console.log("4O4 Book not found (Redirect?)");
+      return res.status(303).json(authors);
+    } else {
+      return res.status(200).json(authors);
     }
   });
 });

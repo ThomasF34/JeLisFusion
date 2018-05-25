@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
-import {Book} from "../model/book.models";
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +25,12 @@ export class BookService {
     console.log("Asking for books in a category");
     console.log('api/book/cat/'+categorie);
     return this.http.get<any>('api/book/cat/'+categorie);
+  }
+
+  getAuthors(id: number) {
+    console.log("Getting authors of book #"+ id);
+    console.log('api/book/'+id+'/authors');
+    return this.http.get<any>('api/book/'+id+'/authors');
+
   }
 }

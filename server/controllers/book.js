@@ -1,3 +1,4 @@
+
 // list of the error messages
 let UNAUTHORIZED_USER = "Unauthorized user";
 let NOT_FOUND = "Student not found";
@@ -57,6 +58,24 @@ module.exports.getBookByCat = function(req, category, callback){
         console.log(err);
         console.log('Cannot get book from '+category);
         return res.status(300).json('Cannot get book from'+ category);
+      }
+      console.log("Query successfully executed");
+      //Retourner à la route
+      callback(rows);
+    });
+  });
+};
+
+module.exports.getAuthorsByBookID = function(req, idBook, callback){
+  //La requete
+  req.getConnection(function (err, connection) {
+    //
+    connection.query("select A.nameAuthor, A.fNameAuthor from Written W, Author A WHERE W.idBook = " +idBook + " AND A.idAuthor = W.idAuthor;", function (err, rows, fields) {
+      console.log("Query sent");
+      if (err) {
+        console.log(err);
+        console.log('Cannot get authors of book #'+idBook);
+        return res.status(300).json('Cannot get authors of book #'+idBook);
       }
       console.log("Query successfully executed");
       //Retourner à la route

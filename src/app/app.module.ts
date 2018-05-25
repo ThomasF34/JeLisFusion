@@ -17,6 +17,7 @@ import localeFr from '@angular/common/locales/fr';
 import { RegisterComponent } from './register/register.component';
 import { BookComponent } from './book/book.component';
 import { WorkshopComponent } from './workshop/workshop.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 registerLocaleData(localeFr);
 
@@ -28,7 +29,8 @@ registerLocaleData(localeFr);
     AccueilComponent,
     RegisterComponent,
     BookComponent,
-    WorkshopComponent
+    WorkshopComponent,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
