@@ -13,7 +13,7 @@ import {Author} from "../share/model/author.models";
 
 export class CatalogComponent implements OnInit {
   books: Observable<Book[]>;
-  categorie : string;
+  category : string;
 
   constructor(private bookService: BookService) {
   }
@@ -23,7 +23,7 @@ export class CatalogComponent implements OnInit {
     console.log('Initilizing Catalog Component');
     this.bookService.getAllBooks().subscribe(books => {
       this.books = books;
-      this.categorie = null;
+      this.category = null;
     });
   }
 
@@ -32,14 +32,14 @@ export class CatalogComponent implements OnInit {
     return list[0] + "." + list[1] + "." + list[2] + "...";
   }
 
-  trier(categorie: string) {
-    if(categorie === undefined){
+  trier(category: string) {
+    if(category === undefined){
       this.ngOnInit();
     } else {
-      console.log('Asking for category ' + categorie);
-      this.bookService.getBooksByCat(categorie).subscribe(books => {
+      console.log('Asking for category ' + category);
+      this.bookService.getBooksByCat(category).subscribe(books => {
         this.books = books;
-        this.categorie = categorie;
+        this.category = category;
       });
     }
   }

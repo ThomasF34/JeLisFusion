@@ -20,6 +20,8 @@ import { WorkshopComponent } from './workshop/workshop.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { AdminPanelBookComponent } from './admin-panel/admin-panel-book/admin-panel-book.component';
+import { AdminPanelListBookComponent } from './admin-panel/admin-panel-list-book/admin-panel-list-book.component';
 
 registerLocaleData(localeFr);
 
@@ -33,7 +35,9 @@ registerLocaleData(localeFr);
     BookComponent,
     WorkshopComponent,
     CalendarComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    AdminPanelBookComponent,
+    AdminPanelListBookComponent
   ],
   imports: [
     BrowserModule,

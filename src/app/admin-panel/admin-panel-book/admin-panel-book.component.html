@@ -1,5 +1,6 @@
+<app-admin-panel xmlns=""></app-admin-panel>
+
 <div class="generalContainer">
-  <h1 class="my-4">Catalogue <span *ngIf="category !== null">- {{category}}</span></h1>
   <div class="row categoryButtons">
     <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier()">Tous les livres</button>
     <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
@@ -9,26 +10,23 @@
     <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == 'À partir de 15 ans', 'btn-info': category != 'À partir de 15 ans'}" (click)="trier('À partir de 15 ans')">À partir de 15 ans</button>
     <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier('Comics')">Comics</button>
   </div>
-
-  <div class="row">
-    <div class="cardBook col-lg-3 col-md-4 col-sm-6 portfolio-item" *ngFor="let book of books">
-      <div class="card h-100">
-        <div class="card-header">
-          <h4 class="card-title align-middle"><a routerLink="/book/{{book.idBook}}" routerLinkActive="active">{{book.titleBook}}</a></h4>
-
-        </div>
-        <a href="#"><img class="cardImg" src="assets/img/{{book.idBook}}.png" alt="img {{book.titleBook}}"></a>
-        <div class="card-body">
-          <p class="text-justify card-text">{{trimSummary(book.summary)}}</p>
-          <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
-        </div>
-        <div class="card-footer">
-          <p class="card-text">{{book.nameCategory}}<span style="float:right">{{book.price | currency:'EUR'}}</span></p>
-          <button type="button" class="btn btn-primary">Détails</button>
-          <button *ngIf="book.nbStock > 0" type="button" style="float:right" class="btn btn-success" (click)="trier('3 à 6 ans')">En stock</button>
-          <button *ngIf="book.nbStock <= 0" type="button" style="float:right" class="btn btn-danger">Rupture de stock</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <table id="table" class="table table-striped table-hover table-sm">
+    <thead class="thead-light">
+    <tr>
+      <th class="sortable" (click)="sortTable(0)" scope="col">Titre</th>
+      <th class="sortable" (click)="sortTable(1)" scope="col">ISBN</th>
+      <th scope="col">Price</th>
+      <th class="sortable" (click)="sortTable(3)" scope="col">Stock</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let book of books" routerLink="/book/{{book.idBook}}">
+      <td>{{book.titleBook}}</td>
+      <td>{{book.ISBN}}</td>
+      <td>{{book.price}}</td>
+      <td [ngClass]="{'inStock': book.nbStock > 0, 'outOfStock': book.nbStock <= 0}"><strong>{{book.nbStock}}</strong></td>
+    </tr>
+    </tbody>
+  </table>
 </div>
+
