@@ -7,6 +7,8 @@ import { BookComponent } from "./book/book.component";
 import { WorkshopComponent } from "./workshop/workshop.component";
 import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 import {AdminPanelBookComponent} from "./admin-panel/admin-panel-book/admin-panel-book.component";
+import {AdminPanelListBookComponent} from "./admin-panel/admin-panel-list-book/admin-panel-list-book.component";
+import {AdminPanelAddBookComponent} from "./admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component";
 
 const routes: Routes = [
   {path : 'catalogue', component: CatalogComponent},
@@ -15,9 +17,12 @@ const routes: Routes = [
   {path: 'book', component: CatalogComponent},
   {path: 'book/:idBook', component: BookComponent},
   {path: 'workshop/:idWkshp', component: WorkshopComponent},
-  {path: 'admin', component: AdminPanelComponent},
-  {path: 'admin/livres', component: AdminPanelBookComponent}
-  ];
+  {path: 'admin', component: AdminPanelListBookComponent},
+  {path: 'admin/livres', component: AdminPanelListBookComponent},
+  {path: 'admin/livre', component: AdminPanelListBookComponent},
+  {path: 'admin/livre/creer', component: AdminPanelAddBookComponent},
+  {path: 'admin/livre/:idBook', component: AdminPanelBookComponent},
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

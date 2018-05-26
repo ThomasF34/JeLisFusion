@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminPanelBookComponent } from './admin-panel/admin-panel-book/admin-panel-book.component';
 import { AdminPanelListBookComponent } from './admin-panel/admin-panel-list-book/admin-panel-list-book.component';
+import { AdminPanelAddBookComponent } from './admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component';
 
 registerLocaleData(localeFr);
 
@@ -37,7 +38,8 @@ registerLocaleData(localeFr);
     CalendarComponent,
     AdminPanelComponent,
     AdminPanelBookComponent,
-    AdminPanelListBookComponent
+    AdminPanelListBookComponent,
+    AdminPanelAddBookComponent
   ],
   imports: [
     BrowserModule,

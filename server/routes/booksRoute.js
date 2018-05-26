@@ -51,6 +51,13 @@ booksRoute.get('/:idBook/authors',(req, res) => {
     }
   });
 });
+
+booksRoute.post('/add', (req,res) => {
+  console.log("In book route");
+  bookController.add(req, book => {
+    return res.status(200).json(book);
+  })
+})
 /*
 tagRoutes.put   ('/:id', auth, tag.update_tag);
 tagRoutes.delete('/:id', auth, tag.delete_tag);

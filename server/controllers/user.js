@@ -19,4 +19,3 @@ module.exports.register = function(req, callback){
   })
 }
 
-

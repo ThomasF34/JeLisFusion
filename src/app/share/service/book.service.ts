@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
+import {Book} from "../model/book.models";
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,9 @@ export class BookService {
     console.log('api/book/'+id+'/authors');
     return this.http.get<any>('api/book/'+id+'/authors');
 
+  }
+
+  add(book: Book) {
+    return this.http.post<Book>('api/book/add',book);
   }
 }

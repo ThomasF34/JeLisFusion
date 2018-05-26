@@ -30,8 +30,9 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void{
     console.log("clicked on submit");
     console.log(this.formRegister.value);
-    alert(this.formRegister.value.nameUser);
     this.userService.register(this.formRegister.value).subscribe();
+    alert("Utilisateur créé");
+
 
   }
 }

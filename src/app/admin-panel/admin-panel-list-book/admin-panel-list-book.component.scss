@@ -1,0 +1,18 @@
+
+.categoryButtons > button {
+  margin: 0 10px 10px 20px;
+}
+
+.inStock{
+  color: green;
+}
+
+.outOfStock {
+  color: red;
+}
+
+.sortable{
+  cursor: pointer;
+  text-decoration: underline;
+}
+

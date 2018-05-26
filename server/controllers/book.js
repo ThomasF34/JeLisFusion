@@ -83,3 +83,38 @@ module.exports.getAuthorsByBookID = function(req, idBook, callback){
     });
   });
 };
+
+module.exports.add = function(req, callback){
+  console.log("Preparing insert query");
+  let query = 'INSERT INTO book (titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
+  const values = [
+    req.body.titleBook,
+    req.body.ISBN,
+    req.body.summary,
+    trueValue(req.body.srcImage),
+    req.body.price,
+    req.body.nbStock,
+    req.body.personnalizedWord,
+    req.body.trends,
+    req.body.idCategory,
+    req.body.idPublisher
+  ];
+  req.getConnection(function (err, connection){
+    connection.query(query, values, function (err, rows, fields){
+      if(err){
+        console.log(err);
+        return res.status(500).json("Error in adding new book");
+      }
+      console.log("Add-book query sent");
+      callback(rows);
+    })
+  });
+}
+
+function trueValue(string){
+  if(string === ''){
+    return null;
+  } else {
+    return string;
+  }
+}
