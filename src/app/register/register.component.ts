@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../share/service/user.service";
 
 @Component({
   selector: 'app-register',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  public formRegister : FormGroup;
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder, private userService: UserService) {
   }
 
+
+  ngOnInit() {
+    this.formRegister = this.fb.group({
+      idUser : [''],
+      nameUser : ['', Validators.required],
+      fNameUser : ['', Validators.required],
+      password : ['', Validators.required],
+      email : ['', Validators.required],
+      admin : [0],
+      registerDate :[null],
+    });
+  }
+
+  onSubmit(): void{
+    console.log("clicked on submit");
+    console.log(this.formRegister.value);
+    alert(this.formRegister.value.nameUser);
+    this.userService.register(this.formRegister.value).subscribe();
+
+  }
 }
+
+//this.myGroup = new FormGroup({ firstName: new FormControl() });
