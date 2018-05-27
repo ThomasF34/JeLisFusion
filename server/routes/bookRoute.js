@@ -1,13 +1,13 @@
 
 // Modules
 const express = require('express');
-const booksRoute = express.Router();
+const bookRoute = express.Router();
 
 //Call for controller
 var bookController = require('../controllers/book');
 
 
-booksRoute.get('/getBookByID/:idBook',(req, res) => {
+bookRoute.get('/getBookByID/:idBook',(req, res) => {
   console.log('Demande un seul book');
   bookController.getBookByID(req, req.params.idBook, book => {
     if(book === undefined){
@@ -19,16 +19,13 @@ booksRoute.get('/getBookByID/:idBook',(req, res) => {
   });
 });
 
-booksRoute.get('/getAllBooks',(req, res) => {
-  console.log('Dans bookRoute1');
+bookRoute.get('/getAllBooks',(req, res) => {
   bookController.getAllBooks(req, books => {
-    console.log('Dans bookRoute2');
-    res.responseCode = 404;
-    return res.json(books);
+    return res.status(200).json(books);
   });
 });
 
-booksRoute.get('/cat/:category',(req, res) => {
+bookRoute.get('/cat/:category',(req, res) => {
   console.log('Demande une categorie');
   bookController.getBookByCat(req, req.params.category, books => {
     if(books === undefined){
@@ -40,7 +37,7 @@ booksRoute.get('/cat/:category',(req, res) => {
   });
 });
 
-booksRoute.get('/:idBook/authors',(req, res) => {
+bookRoute.get('/:idBook/authors',(req, res) => {
   console.log('Asking for authors');
   bookController.getAuthorsByBookID(req, req.params.idBook, authors => {
     if(authors === undefined){
@@ -52,19 +49,41 @@ booksRoute.get('/:idBook/authors',(req, res) => {
   });
 });
 
-booksRoute.post('/add', (req,res) => {
+bookRoute.post('/add', (req, res) => {
   console.log("In book route");
   bookController.add(req, book => {
     return res.status(200).json(book);
   })
-})
+});
+
+bookRoute.put('/:idBook/edit', (req,res) => {
+  bookController.update(req, book => {
+    return res.status(200).json(book);
+  })
+});
+
+bookRoute.delete('/:idBook/deleteWritten', (req,res) => {
+  bookController.deleteWritten(req, req.params.idBook, book => {
+    return res.status(200).json(book);
+  })
+});
+
+
+bookRoute.delete('/:idBook/deleteBook', (req, res) => {
+  bookController.deleteBook(req, req.params.idBook, book => {
+    return res.status(200).json(book);
+  })
+});
+
+
+
 /*
 tagRoutes.put   ('/:id', auth, tag.update_tag);
 tagRoutes.delete('/:id', auth, tag.delete_tag);
 */
 
 
-module.exports = booksRoute;
+module.exports = bookRoute;
 
 
 

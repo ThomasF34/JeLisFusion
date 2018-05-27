@@ -2,7 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs/internal/Observable";
 import {Book} from "../share/model/book.models";
 import {BookService} from "../share/service/book.service";
-import {Author} from "../share/model/author.models";
 
 
 @Component({
@@ -19,7 +18,7 @@ export class CatalogComponent implements OnInit {
   }
 
   ngOnInit() {
-    //When we initializate the catalog component, we'll try to load all book from DB
+    // When we initializate the catalog component, we'll try to load all book from DB
     console.log('Initilizing Catalog Component');
     this.bookService.getAllBooks().subscribe(books => {
       this.books = books;
@@ -29,7 +28,11 @@ export class CatalogComponent implements OnInit {
 
   trimSummary(summary) {
     const list = summary.split(".");
-    return list[0] + "." + list[1] + "." + list[2] + "...";
+    if(list.length >= 3){
+      return list[0] + "." + list[1] + "." + list[2] + "...";
+    } else {
+      return summary;
+    }
   }
 
   trier(category: string) {

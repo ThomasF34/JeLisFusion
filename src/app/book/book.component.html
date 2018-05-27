@@ -1,6 +1,6 @@
 <div class="generalContainer">
   <div class="row headerBook">
-    <h1>{{book.titleBook}}</h1>
+    <h1 *ngIf="book !== undefined">{{book.titleBook}}</h1>
   </div>
 
 
@@ -9,7 +9,7 @@
     <!--Grid column-->
     <div class="col-md-5">
 
-      <img src="assets/img/{{book.idBook}}.png" class="img-fluid" alt="">
+      <img *ngIf="book !== undefined" src="assets/img/{{book.idBook}}.png" class="img-fluid" alt="">
 
     </div>
     <!--Grid column-->
@@ -22,37 +22,37 @@
 
         <div class="mb-3">
           <a href="">
-            <span class="badge badge-primary badge-pill" style="font-size: 17px;">{{book.nameCategory}}</span>
+            <span *ngIf="category !== undefined" class="badge badge-primary badge-pill" style="font-size: 17px;">{{category.nameCategory}}</span>
           </a>
-            <span *ngIf="book.nbStock > 0" class="badge badge-success badge-pill" style="font-size: 17px;">En stock</span>
-            <span *ngIf="book.nbStock <= 0" class="badge badge-danger badge-pill" style="font-size: 17px;">Rupture de stock</span>
+            <span *ngIf="book !== undefined && book.nbStock > 0" class="badge badge-success badge-pill" style="font-size: 17px;">En stock</span>
+            <span *ngIf="book !== undefined && book.nbStock <= 0" class="badge badge-danger badge-pill" style="font-size: 17px;">Rupture de stock</span>
         </div>
 
         <dl class="row lead">
           <dt class="col-sm-3">Prix</dt>
-          <dd class="col-sm-9">{{book.price | currency:'EUR'}}</dd>
+          <dd *ngIf="book !== undefined" class="col-sm-9">{{book.price | currency:'EUR'}}</dd>
 
           <dt class="col-sm-3">Ecrit par</dt>
           <dd class="col-sm-9 ">
-            <p style="margin-bottom: 3px;" *ngFor="let author of authors">{{author.fNameAuthor}} {{author.nameAuthor}}</p>
+            <p style="margin-bottom: 3px;" *ngFor="let author of authors"><span *ngIf="book !== undefined">{{author.fNameAuthor}} {{author.nameAuthor}}</span></p>
           </dd>
 
           <dt class="col-sm-3 align-middle">Edité par</dt>
-          <dd class="col-sm-9">{{book.namePublisher}}</dd>
+          <dd class="col-sm-9" *ngIf="publisher !== undefined">{{publisher.namePublisher}}</dd>
 
           <dt class="col-sm-3 align-middle">ISBN</dt>
-          <dd class="col-sm-9">{{book.ISBN}}</dd>
+          <dd class="col-sm-9" *ngIf="book !== undefined">{{book.ISBN}}</dd>
         </dl>
 
 
-        <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
+        <p *ngIf="book !== undefined && book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
 
 
         <strong class="headerSummary">Résumé</strong>
 
-        <p class="text-justify summary">{{book.summary}}</p>
+        <p *ngIf="book !== undefined" class="text-justify summary">{{book.summary}}</p>
 
-         <div id="personnalizedWord" class="rounded" *ngIf="book.personnalizedWord !== null">
+         <div id="personnalizedWord" class="rounded" *ngIf="book !== undefined && book.personnalizedWord !== null">
            <strong class="headerPersonnalizedWord">Mot du libraire</strong>
            <p class=" personnalizedWord text-justify">
              {{book.personnalizedWord}}

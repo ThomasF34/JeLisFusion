@@ -55,7 +55,7 @@ CREATE TABLE `book`(
   `ISBN` VARCHAR(20),
   `summary` text,
   `srcImage` varchar(30),
-  `price` float(4,2) UNSIGNED,
+  `price` float(6,2) UNSIGNED,
   `nbStock` int(10) UNSIGNED,
   `personnalizedWord` text,
   `trends` tinyint(1) DEFAULT '0',

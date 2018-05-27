@@ -13,4 +13,8 @@ export class CategoryService {
     console.log("Asking for all categories");
     return this.http.get<any>('api/category/getAllCategories');
   }
+
+  public getCategory(idCategory: number): Observable<any>{
+    return this.http.get<any>('api/category/'+idCategory);
+  }
 }

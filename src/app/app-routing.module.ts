@@ -9,6 +9,8 @@ import {AdminPanelComponent} from "./admin-panel/admin-panel.component";
 import {AdminPanelBookComponent} from "./admin-panel/admin-panel-book/admin-panel-book.component";
 import {AdminPanelListBookComponent} from "./admin-panel/admin-panel-list-book/admin-panel-list-book.component";
 import {AdminPanelAddBookComponent} from "./admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component";
+import {AdminPanelEditBookComponent} from "./admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component";
+import {LoginComponent} from "./login/login.component";
 
 const routes: Routes = [
   {path : 'catalogue', component: CatalogComponent},
@@ -21,7 +23,8 @@ const routes: Routes = [
   {path: 'admin/livres', component: AdminPanelListBookComponent},
   {path: 'admin/livre', component: AdminPanelListBookComponent},
   {path: 'admin/livre/creer', component: AdminPanelAddBookComponent},
-  {path: 'admin/livre/:idBook', component: AdminPanelBookComponent},
+  {path: 'admin/livre/:idBook', component: AdminPanelEditBookComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

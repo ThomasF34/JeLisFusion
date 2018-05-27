@@ -13,4 +13,8 @@ export class UserService {
   register(user: User){
     return this.http.post<User>("api/user/register", user);
   }
+
+  login(user){
+    return this.http.post<any>("api/user/login",user);
+  }
 }

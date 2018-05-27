@@ -19,3 +19,16 @@ module.exports.register = function(req, callback){
   })
 }
 
+module.exports.loginUser =  function(req, callback) {
+  req.getConnection(function (err, connection) {
+    connection.query("SELECT email, password from users where email = ?", req.body.email, function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json("Error in register");
+      }
+      console.log("Login query sent");
+      callback(rows[0]);
+    })
+  })
+}
+

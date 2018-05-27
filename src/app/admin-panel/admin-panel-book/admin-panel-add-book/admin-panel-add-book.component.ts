@@ -4,6 +4,8 @@ import { BookService } from "../../../share/service/book.service";
 import {Observable} from "rxjs/internal/Observable";
 import {Category} from "../../../share/model/category.models";
 import {CategoryService} from "../../../share/service/category.service";
+import {PublisherService} from "../../../share/service/publisher.service";
+import {Publisher} from "../../../share/model/publisher.models";
 
 @Component({
   selector: 'app-admin-panel-add-book',
@@ -14,8 +16,9 @@ export class AdminPanelAddBookComponent implements OnInit {
 
   public formAdd : FormGroup;
   public categories : Observable<Category[]>;
+  public publishers : Observable<Publisher[]>;
 
-  constructor(private fb : FormBuilder, private bookService : BookService, private categoryService : CategoryService) { }
+  constructor(private fb : FormBuilder, private bookService : BookService, private categoryService : CategoryService, private publisherService: PublisherService) { }
 
   ngOnInit() {
 
@@ -24,28 +27,24 @@ export class AdminPanelAddBookComponent implements OnInit {
       titleBook: ['', Validators.required],
       ISBN: ['', Validators.required],
       summary: ['', Validators.required],
-      srcImage: ['', Validators.required],
+      srcImage: [null],
       price: ['', Validators.required],
       nbStock: ['', Validators.required],
-      personnalizedWord: ['', Validators.required],
-      trends: [false, Validators.required],
-      idCategory: [1],
-      idPublisher: [1]
+      personnalizedWord: [''],
+      trends: [false],
+      idCategory: [null, Validators.required],
+      idPublisher: [null, Validators.required],
     });
-    this.categoryService.getAllCategories().subscribe(categories => {
-      this.categories = categories});
+    this.categoryService.getAllCategories().subscribe(categories => {this.categories = categories});
+    this.publisherService.getAllPublishers().subscribe(publishers => {this.publishers = publishers});
   }
 
   onSubmit(): void{
-    console.log("Clicked on submit");
-    console.log(this.formAdd.value);
-    alert(this.formAdd.value.titleBook);
     this.bookService.add(this.formAdd.value).subscribe();
-    alert("Livre créé");
   }
 
-  changeCategory(event) {
-    this.formAdd.get('idCategory').setValue(event.target.value);
+  changeSelect(event, formControlName) {
+    this.formAdd.get(formControlName).setValue(event.target.value);
   }
 }
 

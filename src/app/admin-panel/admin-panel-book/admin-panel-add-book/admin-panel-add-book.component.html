@@ -23,11 +23,20 @@
 
     <div class="form-group">
       <label for="category">Categorie du livre</label>
-      <select id="category" formControlName="idCategory" class="form-control" (change)="changeCategory($event)" >
-        <option selected disabled>Choisissez la catégorie du livre</option>
+      <select id="category" formControlName="idCategory" class="form-control" (change)="changeSelect($event, 'idCategory')" >
+        <option selected [value]="-1" >Choisissez la catégorie du livre</option>
         <option type="number" *ngFor="let category of categories" [value]="category.idCategory">{{category.nameCategory}}</option>
       </select>
     </div>
+
+    <div class="form-group">
+      <label for="publisher">Editeur du livre</label>
+      <select id="publisher" formControlName="idPublisher" class="form-control" (change)="changeSelect($event, 'idPublisher')" >
+        <option selected [value]="-1">Choisissez l'éditeur du livre</option>
+        <option type="number" *ngFor="let publisher of publishers" [value]="publisher.idPublisher">{{publisher.namePublisher}}</option>
+      </select>
+    </div>
+
     <div class="form-group">
       <div class="form-check">
         <input formControlName="trends" class="form-check-input" type="checkbox" id="trends">
@@ -42,6 +51,8 @@
       <textarea formControlName="personnalizedWord" type="text" class="form-control" id="personnalizedWord"></textarea>
     </div>
 
-    <button (click)="onSubmit()" type="submit" class="btn btn-success" >Créer le livre</button>
+    <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('titleBook').invalid || this.formAdd.get('ISBN').invalid || this.formAdd.get('summary').invalid
+      || this.formAdd.get('price').invalid || this.formAdd.get('nbStock').invalid || this.formAdd.get('idCategory').invalid || this.formAdd.get('idPublisher').invalid ||
+      this.formAdd.get('idPublisher').value === '-1' || this.formAdd.get('idCategory').value === '-1'" routerLink="/admin" routerLinkActive="active" >Créer le livre</button>
   </form>
 </div>

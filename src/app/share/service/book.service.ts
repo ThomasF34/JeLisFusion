@@ -9,11 +9,11 @@ import {Book} from "../model/book.models";
 
 export class BookService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   public getAllBooks(): Observable<any> {
     console.log("Asking for books");
-    return this.http.get<any>('/api/book/getAllBooks');
+    return this.http.get<any>('api/book/getAllBooks');
   }
 
   public getBook(bookID : number): Observable<any>{
@@ -32,10 +32,26 @@ export class BookService {
     console.log("Getting authors of book #"+ id);
     console.log('api/book/'+id+'/authors');
     return this.http.get<any>('api/book/'+id+'/authors');
-
   }
 
   add(book: Book) {
     return this.http.post<Book>('api/book/add',book);
   }
+
+  update(book: Book) {
+    console.log("Updating book");
+    return this.http.put('api/book/'+book.idBook+"/edit", book);
+  }
+
+  deleteWritten(book: Book) {
+    console.log("Deleting book");
+    return this.http.delete('api/book/'+book.idBook+"/deleteWritten");
+  }
+
+  deleteBook(book: Book) {
+    console.log("Deleting book");
+    return this.http.delete('api/book/'+book.idBook+"/deleteBook");
+  }
+
+
 }

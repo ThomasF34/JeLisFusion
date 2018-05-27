@@ -3,15 +3,15 @@
 const express = require('express');
 const router = express();
 
-booksRoute = require('./booksRoute');
+booksRoute = require('./bookRoute');
 userRoute = require('./userRoute');
 categoryRoute = require('./categoryRoute');
+publisherRoute = require('./publisherRoute');
 
 //Call for book route
 router.use('/book', booksRoute);
 router.use('/user', userRoute);
 router.use('/category', categoryRoute);
-
-console.log('Dans le main router');
+router.use('/publisher', publisherRoute);
 
 module.exports = router;

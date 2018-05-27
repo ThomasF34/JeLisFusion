@@ -1,13 +1,13 @@
 <div class="generalContainer">
   <h1 class="my-4">Catalogue <span *ngIf="category !== null">- {{category}}</span></h1>
   <div class="row categoryButtons">
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier()">Tous les livres</button>
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier('6 à 9 ans')">6 à 9 ans</button>
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier('9 à 13 ans')">9 à 13 ans</button>
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == 'À partir de 13 ans', 'btn-info': category != 'À partir de 13 ans'}" (click)="trier('À partir de 13 ans')">À partir de 13 ans</button>
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == 'À partir de 15 ans', 'btn-info': category != 'À partir de 15 ans'}" (click)="trier('À partir de 15 ans')">À partir de 15 ans</button>
-    <button type="button" style="float:right" class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier('Comics')">Comics</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier()">Tous les livres</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier('6 à 9 ans')">6 à 9 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier('9 à 13 ans')">9 à 13 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 13 ans', 'btn-info': category != 'A partir de 13 ans'}" (click)="trier('A partir de 13 ans')">A partir de 13 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 15 ans', 'btn-info': category != 'A partir de 15 ans'}" (click)="trier('A partir de 15 ans')">A partir de 15 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier('Comics')">Comics</button>
   </div>
 
   <div class="row">
@@ -26,7 +26,7 @@
           <p class="card-text">{{book.nameCategory}}<span style="float:right">{{book.price | currency:'EUR'}}</span></p>
           <button type="button" class="btn btn-primary">Détails</button>
           <button *ngIf="book.nbStock > 0" type="button" style="float:right" class="btn btn-success" (click)="trier('3 à 6 ans')">En stock</button>
-          <button *ngIf="book.nbStock <= 0" type="button" style="float:right" class="btn btn-danger">Rupture de stock</button>
+          <button *ngIf="book.nbStock <= 0" type="button" style="float:right" class="btn btn-danger">Indisponible</button>
         </div>
       </div>
     </div>

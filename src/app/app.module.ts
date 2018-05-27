@@ -1,28 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from "@angular/common/http";
-
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-
-import { NavbarComponent } from "./navbar/navbar.component";
-import { CatalogComponent } from "./catalog/catalog.component";
-import { AccueilComponent } from './accueil/accueil.component';
 
 
 import {LOCALE_ID} from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
+
+import { AppComponent } from './app.component';
+import { NavbarComponent } from "./navbar/navbar.component";
+import { CatalogComponent } from "./catalog/catalog.component";
+import { AccueilComponent } from './accueil/accueil.component';
 import { RegisterComponent } from './register/register.component';
 import { BookComponent } from './book/book.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { CalendarComponent } from './calendar/calendar.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { AdminPanelBookComponent } from './admin-panel/admin-panel-book/admin-panel-book.component';
 import { AdminPanelListBookComponent } from './admin-panel/admin-panel-list-book/admin-panel-list-book.component';
 import { AdminPanelAddBookComponent } from './admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component';
+import { AdminPanelEditBookComponent } from './admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(localeFr);
 
@@ -39,7 +39,9 @@ registerLocaleData(localeFr);
     AdminPanelComponent,
     AdminPanelBookComponent,
     AdminPanelListBookComponent,
-    AdminPanelAddBookComponent
+    AdminPanelAddBookComponent,
+    AdminPanelEditBookComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

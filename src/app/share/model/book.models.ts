@@ -8,7 +8,7 @@ export interface Book {
   nbStock: number;
   personnalizedWord: string;
   trends: boolean;
-  nameCategory: string;
-  namePublisher: string;
+  idCategory: number;
+  idPublisher: number;
 }
 
