@@ -1,0 +1,4 @@
+<app-admin-panel-navbar></app-admin-panel-navbar>
+<ul>
+  <li *ngFor="let workshop of workshops">{{workshop.dateWorkshop}} {{workshop.price | currency:'EUR'}}</li>
+</ul>

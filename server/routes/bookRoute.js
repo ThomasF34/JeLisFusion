@@ -51,7 +51,7 @@ bookRoute.get('/:idBook/authors',(req, res) => {
   });
 });
 
-bookRoute.post('/add',token.verifyToken, (req, res) => {
+bookRoute.post('/add', (req, res) => {
   console.log("In book route");
   bookController.add(req, book => {
     return res.status(200).json(book);

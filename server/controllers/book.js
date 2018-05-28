@@ -15,7 +15,7 @@ module.exports.getAllBooks = function(req, callback) {
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select idBook, titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, nameCategory, namePublisher FROM Book B, Category C, Publisher P WHERE B.idCategory = C.idCategory AND B.idPublisher = P.idPublisher;", function(err, rows, fields) {
+    connection.query("select idBook, titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, nameCategory FROM Book B, Category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log (err);
@@ -115,13 +115,13 @@ module.exports.add = function(req, callback){
   let query = 'INSERT INTO book (titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
   const values = [
     req.body.titleBook,
-    req.body.ISBN,
-    req.body.summary,
+    trueValue(req.body.ISBN),
+    trueValue(req.body.summary),
     trueValue(req.body.srcImage),
-    req.body.price,
-    req.body.nbStock,
+    trueValue(req.body.price),
+    trueValue(req.body.nbStock),
     trueValue(req.body.personnalizedWord),
-    req.body.trends,
+    trueValue(req.body.trends),
     req.body.idCategory,
     req.body.idPublisher
   ];

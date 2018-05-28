@@ -15,6 +15,9 @@ import {Publisher} from "../../../share/model/publisher.models";
 export class AdminPanelAddBookComponent implements OnInit {
 
   public formAdd : FormGroup;
+
+
+
   public categories : Observable<Category[]>;
   public publishers : Observable<Publisher[]>;
 
@@ -25,16 +28,17 @@ export class AdminPanelAddBookComponent implements OnInit {
     this.formAdd = this.fb.group({
       idBook: [''],
       titleBook: ['', Validators.required],
-      ISBN: ['', Validators.required],
-      summary: ['', Validators.required],
+      ISBN: [''],
+      summary: [''],
       srcImage: [null],
-      price: ['', Validators.required],
-      nbStock: ['', Validators.required],
+      price: [''],
+      nbStock: [''],
       personnalizedWord: [''],
       trends: [false],
       idCategory: [null, Validators.required],
-      idPublisher: [null, Validators.required],
+      idPublisher: [null],
     });
+
     this.categoryService.getAllCategories().subscribe(categories => {this.categories = categories});
     this.publisherService.getAllPublishers().subscribe(publishers => {this.publishers = publishers});
   }

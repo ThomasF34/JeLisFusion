@@ -31,15 +31,15 @@ export class AdminPanelEditBookComponent implements OnInit {
     this.formEdit = this.fb.group({
       idBook: [''],
       titleBook: ['', Validators.required],
-      ISBN: ['', Validators.required],
-      summary: ['', Validators.required],
+      ISBN: [''],
+      summary: [''],
       srcImage: [null],
-      price: ['', Validators.required],
-      nbStock: ['', Validators.required],
+      price: [''],
+      nbStock: [''],
       personnalizedWord: [''],
       trends: [false],
       idCategory: [null, Validators.required],
-      idPublisher: [null, Validators.required],
+      idPublisher: [null],
     });
 
 
@@ -54,15 +54,15 @@ export class AdminPanelEditBookComponent implements OnInit {
       this.formEdit = this.fb.group({
         idBook: [book.idBook],
         titleBook: [book.titleBook, Validators.required],
-        ISBN: [book.ISBN, Validators.required],
-        summary: [book.summary, Validators.required],
+        ISBN: [book.ISBN],
+        summary: [book.summary],
         srcImage: [null],
-        price: [book.price, Validators.required],
-        nbStock: [book.nbStock, Validators.required],
+        price: [book.price],
+        nbStock: [book.nbStock],
         personnalizedWord: [book.personnalizedWord],
         trends: [book.trends],
         idCategory: [book.idCategory, Validators.required],
-        idPublisher: [book.idPublisher, Validators.required],
+        idPublisher: [book.idPublisher],
       });
     });
 

@@ -26,7 +26,12 @@ CREATE TABLE `users`(
 CREATE TABLE `workshop`(
   `idWorkshop` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `dateWorkshop` datetime NOT NULL,
-  `nbSeat` int(10) UNSIGNED,
+  `nbSeat` int(3) UNSIGNED,
+  `price` int(3) UNSIGNED,
+  `minAge` int(3) UNSIGNED,
+  `maxAge` int(3) UNSIGNED,
+  `description` text,
+  `nameAnimator` varchar(30),
   CONSTRAINT pk_Workshop PRIMARY KEY (idWorkshop)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -78,6 +83,7 @@ CREATE TABLE `written`(
 CREATE TABLE `participate`(
   `idWorkshop` bigint(10) UNSIGNED NOT NULL,
   `idUser` bigint(10) UNSIGNED NOT NULL,
+  `nbSeat` int(3) UNSIGNED NOT NULL,
   CONSTRAINT pk_Participate PRIMARY KEY (idWorkshop,idUser),
   CONSTRAINT fk_ParticipateWorkshop FOREIGN KEY (idWorkshop) REFERENCES Workshop(idWorkshop),
   CONSTRAINT fk_ParticipateUser FOREIGN KEY (idUser) REFERENCES users(idUser)

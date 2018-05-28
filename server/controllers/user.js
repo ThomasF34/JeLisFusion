@@ -1,10 +1,12 @@
+const bcrypt = require('bcrypt');
+
 module.exports.register = function(req, callback){
   console.log("Preparing insert query");
   let query = "INSERT INTO users (nameUser, fNameUser, password, email) VALUES ( ?, ?, ?, ?);"
   const values = [
     req.body.nameUser,
     req.body.fNameUser,
-    req.body.password,
+    bcrypt.hashSync(req.body.password,bcrypt.genSaltSync(7)),
     req.body.email
   ];
   req.getConnection(function (err, connection){

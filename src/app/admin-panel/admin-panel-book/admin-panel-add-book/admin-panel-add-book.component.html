@@ -1,10 +1,10 @@
-<app-admin-panel></app-admin-panel>
+<app-admin-panel-navbar></app-admin-panel-navbar>
 
 
-<div class="generalContainer">
+<div class="generalContainer col-lg-8 offset-lg-2">
   <form [formGroup]="formAdd">
     <div class="form-group">
-      <label for="title">Titre</label>
+      <label for="title" class="requiredAsterisk">Titre</label>
       <input formControlName="titleBook" type="text" class="form-control" id="title" placeholder="Titre du livre">
     </div>
     <div class="form-group">
@@ -25,7 +25,7 @@
     </div>
 
     <div class="form-group">
-      <label for="category">Categorie du livre</label>
+      <label for="category" class="requiredAsterisk">Categorie du livre</label>
       <select id="category" formControlName="idCategory" class="form-control" (change)="changeSelect($event, 'idCategory')" >
         <option selected [value]="-1" >Choisissez la catégorie du livre</option>
         <option type="number" *ngFor="let category of categories" [value]="category.idCategory">{{category.nameCategory}}</option>
@@ -54,8 +54,7 @@
       <textarea formControlName="personnalizedWord" type="text" class="form-control" id="personnalizedWord"></textarea>
     </div>
 
-    <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('titleBook').invalid || this.formAdd.get('ISBN').invalid || this.formAdd.get('summary').invalid
-      || this.formAdd.get('price').invalid || this.formAdd.get('nbStock').invalid || this.formAdd.get('idCategory').invalid || this.formAdd.get('idPublisher').invalid ||
-      this.formAdd.get('idPublisher').value === '-1' || this.formAdd.get('idCategory').value === '-1'" routerLink="/admin" routerLinkActive="active" >Créer le livre</button>
+    <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('titleBook').invalid || this.formAdd.get('idCategory').invalid ||
+    this.formAdd.get('idPublisher').value === '-1' || this.formAdd.get('idCategory').value === '-1'" routerLink="/admin" routerLinkActive="active" >Créer le livre</button>
   </form>
 </div>

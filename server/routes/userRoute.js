@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // Modules
 const express = require('express');
@@ -9,22 +10,21 @@ var userController = require('../controllers/user');
 
 userRoute.post("/register", (req,res) => {
   console.log("In route User");
-  console.log(req.body);
   userController.register(req, user => {
     //Creation of payload for token auth
     let payload = { subject : user.insertId};
-    let token = jwt.sign(payload, 'MySuperSecretKey');
+    let token = jwt.sign(payload, 'ItsASecretKey');
     res.status(200).json({token});
   })
 });
 
 userRoute.post("/login", (req,res) => {
   userController.loginUser(req, user =>{
-    if(user === undefined || user.password !== req.body.password){
+    if(user === undefined || !bcrypt.compareSync(req.body.password, user.password)){
       res.status(401).json(user);
     } else {
       let payload = { subject : user.idUser }
-      let token = jwt.sign(payload, 'MySuperSecretKey');
+      let token = jwt.sign(payload, 'ItsASecretKey');
       res.status(200).json({token});
     }
   })

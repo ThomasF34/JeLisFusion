@@ -16,13 +16,13 @@ module.exports = {
 
     let payload;
     try {
-      payload = jwt.verify(token, 'MySuperSecretKey');
+      payload = jwt.verify(token, 'ItsASecretKey');
       if (!payload) {
         //if toekn is invalid, there's no payload generated, so we send 401 code
         return res.status(401).send('Unauthorized request');
       }
 
-      req.userId = payload.subject;
+        req.userId = payload.subject;
       next();
     } catch (e) {
       if (e instanceof jwt.JsonWebTokenError) {
