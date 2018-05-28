@@ -25,6 +25,7 @@ CREATE TABLE `users`(
 
 CREATE TABLE `workshop`(
   `idWorkshop` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `titleWorkshop` varchar(300) NOT NULL,
   `dateWorkshop` datetime NOT NULL,
   `nbSeat` int(3) UNSIGNED,
   `price` int(3) UNSIGNED,

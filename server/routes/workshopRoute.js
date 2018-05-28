@@ -11,5 +11,10 @@ workshopRoute.get('/getAll', (req,res) => {
   })
 });
 
+workshopRoute.post('/add', (req, res) => {
+  workshopController.add(req, workshop => {
+    return res.status(200).json(workshop);
+  })
+})
 
 module.exports = workshopRoute;

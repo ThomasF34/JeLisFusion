@@ -1,0 +1,53 @@
+<app-admin-panel-navbar></app-admin-panel-navbar>
+
+
+<div class="generalContainer col-lg-8 offset-lg-2">
+  <form [formGroup]="formAdd">
+    <div class="form-group">
+      <label for="title" class="requiredAsterisk">Titre de l'atelier</label>
+      <input formControlName="titleWorkshop" type="text" class="form-control" id="title" placeholder="Titre">
+    </div>
+
+    <div class="form-group">
+      <label for="date">Date de l'atelier</label>
+      <input formControlName="dateWorkshop" type="date" class="form-control" id="date">
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description de l'atelier</label>
+      <textarea formControlName="description" type="text" class="form-control" id="description" placeholder="Description"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Prix de l'atelier</label>
+      <input formControlName="price" type="number" step="0.01" class="form-control" id="price" placeholder="Prix">
+    </div>
+
+    <div class="form-group">
+      <label for="nbSeat">Nombre de place</label>
+      <input formControlName="nbSeat" type="number" class="form-control" id="nbSeat" placeholder="Nombre de place">
+    </div>
+
+    <div class="form-group">
+      <label for="minAge">Age minimum</label>
+      <input formControlName="minAge" type="number" class="form-control" id="minAge" placeholder="Age minimum">
+    </div>
+
+    <div class="form-group">
+      <label for="maxAge">Age maximum</label>
+      <input formControlName="maxAge" type="number" class="form-control" id="maxAge" placeholder="Age maximum">
+    </div>
+
+    <div class="form-group">
+      <label for="nameAnimator">Animateur</label>
+      <select id="nameAnimator" formControlName="nameAnimator" class="form-control" (change)="changeSelect($event, 'nameAnimator')" >
+        <option value="-1" selected>Choisissez l'animateur de l'atelier</option>
+        <option type="number" value="Laura">Laura</option>
+        <option type="number" value="Loreline">Loreline</option>
+      </select>
+    </div>
+
+    <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('titleWorkshop').invalid || this.formAdd.get('dateWorkshop').invalid ||
+    this.formAdd.get('minAge').value > this.formAdd.get('maxAge').value || this.formAdd.get('nameAnimator').value === '-1'" routerLink="/admin" routerLinkActive="active" >Créer l'atelier</button>
+  </form>
+</div>

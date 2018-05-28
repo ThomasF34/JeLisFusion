@@ -2,3 +2,5 @@
 <ul>
   <li *ngFor="let workshop of workshops">{{workshop.dateWorkshop}} {{workshop.price | currency:'EUR'}}</li>
 </ul>
+
+<button type="button" class="btn btn-success pull-right" routerLink="/admin/atelier/creer" routerLinkActive="active">Nouvel atelier</button>

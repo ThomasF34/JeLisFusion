@@ -1,5 +1,6 @@
 export interface Workshop {
   idWorkshop: number,
+  titleWorkshop: string;
   dateWorkshop: string,
   nbSeat: number,
   price: number,

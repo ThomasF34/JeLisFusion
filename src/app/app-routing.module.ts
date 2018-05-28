@@ -11,6 +11,7 @@ import { AdminPanelEditBookComponent } from "./admin-panel/admin-panel-book/admi
 import { LoginComponent } from "./login/login.component";
 import { AuthentGuard } from "./authent.guard";
 import { AdminPanelListWorkshopComponent } from "./admin-panel/admin-panel-workshop/admin-panel-list-workshop/admin-panel-list-workshop.component";
+import {AdminPanelAddWorkshopComponent} from "./admin-panel/admin-panel-workshop/admin-panel-add-workshop/admin-panel-add-workshop.component";
 
 const routes: Routes = [
   {path : 'catalogue', component: CatalogComponent},
@@ -27,6 +28,7 @@ const routes: Routes = [
   {path: 'admin/livre', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
   {path: 'admin/atelier', component: AdminPanelListWorkshopComponent, canActivate: [AuthentGuard]},
   {path: 'admin/ateliers', component: AdminPanelListWorkshopComponent, canActivate: [AuthentGuard]},
+  {path: 'admin/atelier/creer', component: AdminPanelAddWorkshopComponent, canActivate: [AuthentGuard]},
   {path: 'admin/livre/creer', component: AdminPanelAddBookComponent, canActivate: [AuthentGuard]},
   {path: 'admin/livre/:idBook', component: AdminPanelEditBookComponent, canActivate: [AuthentGuard]}
 ];
