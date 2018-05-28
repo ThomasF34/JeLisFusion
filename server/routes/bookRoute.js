@@ -3,11 +3,13 @@
 const express = require('express');
 const bookRoute = express.Router();
 
+const token = require('./token');
+
 //Call for controller
 var bookController = require('../controllers/book');
 
 
-bookRoute.get('/getBookByID/:idBook',(req, res) => {
+bookRoute.get('/getBookByID/:idBook', (req, res) => {
   console.log('Demande un seul book');
   bookController.getBookByID(req, req.params.idBook, book => {
     if(book === undefined){
@@ -49,27 +51,27 @@ bookRoute.get('/:idBook/authors',(req, res) => {
   });
 });
 
-bookRoute.post('/add', (req, res) => {
+bookRoute.post('/add',token.verifyToken, (req, res) => {
   console.log("In book route");
   bookController.add(req, book => {
     return res.status(200).json(book);
   })
 });
 
-bookRoute.put('/:idBook/edit', (req,res) => {
+bookRoute.put('/:idBook/edit',token.verifyToken, (req,res) => {
   bookController.update(req, book => {
     return res.status(200).json(book);
   })
 });
 
-bookRoute.delete('/:idBook/deleteWritten', (req,res) => {
+bookRoute.delete('/:idBook/deleteWritten',token.verifyToken, (req,res) => {
   bookController.deleteWritten(req, req.params.idBook, book => {
     return res.status(200).json(book);
   })
 });
 
 
-bookRoute.delete('/:idBook/deleteBook', (req, res) => {
+bookRoute.delete('/:idBook/deleteBook',token.verifyToken, (req, res) => {
   bookController.deleteBook(req, req.params.idBook, book => {
     return res.status(200).json(book);
   })

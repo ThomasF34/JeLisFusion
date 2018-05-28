@@ -2,6 +2,7 @@ import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../share/service/user.service";
 import {Router} from "@angular/router";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-register',
@@ -34,7 +35,13 @@ export class RegisterComponent implements OnInit {
         localStorage.setItem('token', res.token)
         this.router.navigate(['/accueil'])
       },
-      error => {console.log(error)}
+      error => {
+        if(error instanceof HttpErrorResponse){
+          if(error.status === 401){
+            this.router.navigate(['/login'])
+          }
+        }
+      }
     );
 
   }

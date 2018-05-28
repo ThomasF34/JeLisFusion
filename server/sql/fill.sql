@@ -22,3 +22,4 @@ insert into written value (2,2);
 insert into written value (3,2);
 insert into written value (4,3);
 insert into written value (5,9);
+insert into users (idUser, nameUser, fNameUser, password, email) value (1,"Falcone", "Thomas", "thomas", "t@t.com");

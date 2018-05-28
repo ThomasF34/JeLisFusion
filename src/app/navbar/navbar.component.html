@@ -14,8 +14,9 @@
 
     <ul  class="navbar-nav navbarRightPart">
       <li class="nav-item"><a class="nav-link" routerLink="/admin" routerLinkActive="active">Administration</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">Connexion</a></li>
-      <li class="nav-item"><a class="nav-link" routerLink="/register" routerLinkActive="active">Inscription</a></li>
+      <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">Connexion</a></li>
+      <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" routerLink="/register" routerLinkActive="active">Inscription</a></li>
+      <li *ngIf="userService.loggedIn()" class="nav-item"><a class="nav-link" (click)="userService.logOutUser()">Déconnexion</a></li>
     </ul>
   </div>
 </nav>

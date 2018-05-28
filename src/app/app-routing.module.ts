@@ -9,6 +9,7 @@ import {AdminPanelListBookComponent} from "./admin-panel/admin-panel-list-book/a
 import {AdminPanelAddBookComponent} from "./admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component";
 import {AdminPanelEditBookComponent} from "./admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component";
 import {LoginComponent} from "./login/login.component";
+import {AuthentGuard} from "./authent.guard";
 
 const routes: Routes = [
   {path : 'catalogue', component: CatalogComponent},
@@ -18,12 +19,12 @@ const routes: Routes = [
   {path: 'book', component: CatalogComponent},
   {path: 'book/:idBook', component: BookComponent},
   {path: 'workshop/:idWkshp', component: WorkshopComponent},
-  {path: 'admin', component: AdminPanelListBookComponent},
-  {path: 'admin/livres', component: AdminPanelListBookComponent},
-  {path: 'admin/livre', component: AdminPanelListBookComponent},
-  {path: 'admin/livre/creer', component: AdminPanelAddBookComponent},
-  {path: 'admin/livre/:idBook', component: AdminPanelEditBookComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'admin', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
+  {path: 'admin/livres', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
+  {path: 'admin/livre', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
+  {path: 'admin/livre/creer', component: AdminPanelAddBookComponent, canActivate: [AuthentGuard]},
+  {path: 'admin/livre/:idBook', component: AdminPanelEditBookComponent, canActivate: [AuthentGuard]}
 ];
 
 @NgModule({

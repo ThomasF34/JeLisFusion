@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,6 +22,8 @@ import { AdminPanelListBookComponent } from './admin-panel/admin-panel-list-book
 import { AdminPanelAddBookComponent } from './admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component';
 import { AdminPanelEditBookComponent } from './admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component';
 import { LoginComponent } from './login/login.component';
+import {AuthentGuard} from "./authent.guard";
+import {TokenInterceptorService} from "./share/service/token-interceptor.service";
 
 registerLocaleData(localeFr);
 
@@ -49,7 +51,9 @@ registerLocaleData(localeFr);
     HttpClientModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'fr-FR'}
+    { provide: LOCALE_ID, useValue: 'fr-FR'},
+    AuthentGuard,
+    { provide : HTTP_INTERCEPTORS, useClass : TokenInterceptorService, multi: true}
   ],
   bootstrap: [AppComponent]
 })
