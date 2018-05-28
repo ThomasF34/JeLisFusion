@@ -106,6 +106,11 @@ export class AdminPanelEditBookComponent implements OnInit {
   }
 
   setTrends(event){
+    if(event.target.value == 0){
+      event.target.value = 1;
+    } else {
+      event.target.value = 0;
+    }
     this.book.trends = event.target.value;
   }
 

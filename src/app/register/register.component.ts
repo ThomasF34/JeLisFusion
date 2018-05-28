@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UserService} from "../share/service/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent implements OnInit {
 
   public formRegister : FormGroup;
 
-  constructor(private fb: FormBuilder, private userService: UserService) {
+  constructor(private fb: FormBuilder, private userService: UserService, private router: Router) {
   }
 
 
@@ -28,11 +29,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(): void{
-    console.log("clicked on submit");
-    console.log(this.formRegister.value);
-    this.userService.register(this.formRegister.value).subscribe();
-    alert("Utilisateur créé");
-
+    this.userService.register(this.formRegister.value).subscribe(
+      res => {
+        localStorage.setItem('token', res.token)
+        this.router.navigate(['/accueil'])
+      },
+      error => {console.log(error)}
+    );
 
   }
 }

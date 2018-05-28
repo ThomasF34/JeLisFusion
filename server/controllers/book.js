@@ -42,7 +42,6 @@ module.exports.getBookByID = function(req, idBook, callback){
         }
         console.log("Query successfully executed");
         //Retourner à la route
-        console.log(rows[0]);
         callback(rows[0]);
       });
     });

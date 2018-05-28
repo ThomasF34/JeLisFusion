@@ -18,7 +18,6 @@ import { BookComponent } from './book/book.component';
 import { WorkshopComponent } from './workshop/workshop.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { AdminPanelBookComponent } from './admin-panel/admin-panel-book/admin-panel-book.component';
 import { AdminPanelListBookComponent } from './admin-panel/admin-panel-list-book/admin-panel-list-book.component';
 import { AdminPanelAddBookComponent } from './admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component';
 import { AdminPanelEditBookComponent } from './admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component';
@@ -37,7 +36,6 @@ registerLocaleData(localeFr);
     WorkshopComponent,
     CalendarComponent,
     AdminPanelComponent,
-    AdminPanelBookComponent,
     AdminPanelListBookComponent,
     AdminPanelAddBookComponent,
     AdminPanelEditBookComponent,
