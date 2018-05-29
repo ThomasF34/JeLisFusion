@@ -17,4 +17,12 @@ export class WorkshopService {
   public add(workshop: Workshop){
     return this.http.post<Workshop>('api/workshop/add', workshop);
   }
+
+  getWorkshop(id: number): Observable<any> {
+    return this.http.get<any>('api/workshop/'+id);
+  }
+
+  update(workshop: Workshop) {
+    return this.http.put('api/workshop/'+ workshop.idWorkshop +'/update', workshop);
+  }
 }

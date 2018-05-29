@@ -4,7 +4,7 @@ module.exports.getAll = function(req, callback){
       console.log("query sent");
       if(err){
         console.log(err);
-        console.log("Cannot get book");
+        console.log("Cannot get workshop");
       }
       console.log("Query successfully executed");
       callback(rows);
@@ -12,8 +12,22 @@ module.exports.getAll = function(req, callback){
   })
 };
 
+module.exports.getByID = function(req, idWorkshop, callback){
+  req.getConnection(function (err, connection) {
+    connection.query("SELECT * FROM Workshop WHERE idWorkshop = ?", idWorkshop, function(err, rows, fields){
+      console.log("query sent");
+      if(err){
+        console.log(err);
+        console.log("Cannot get workshop");
+      }
+      console.log("Query successfully executed");
+      callback(rows[0]);
+    });
+  })
+};
+
 module.exports.add = function(req, callback){
-  let query = "INSERT INTO workshop (titleWorkshop, dateWorkshop, nbSeat, price, minAge, maxAge, description, nameAnimator) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+  let query = "INSERT INTO workshop (titleWorkshop, dateWorkshop, nbSeat, price, minAge, maxAge, description, nameAnimator) VALUES (?, STR_TO_DATE(?,'%d/%m/%Y à %H:%i:%s'), ?, ?, ?, ?, ?, ?)";
   const value = [
     req.body.titleWorkshop,
     req.body.dateWorkshop,
@@ -37,6 +51,31 @@ module.exports.add = function(req, callback){
   )
 };
 
+module.exports.update = function(req, callback){
+  let query = "UPDATE workshop SET  titleWorkshop = ?, dateWorkshop = STR_TO_DATE(?,'%d/%m/%Y à %H:%i:%s'), nbSeat = ?, price = ?, minAge = ?, maxAge = ?, description = ?, nameAnimator = ? WHERE idWorkshop = ?";
+  const value = [
+    req.body.titleWorkshop,
+    req.body.dateWorkshop,
+    trueValue(req.body.nbSeat),
+    trueValue(req.body.price),
+    trueValue(req.body.minAge),
+    trueValue(req.body.maxAge),
+    trueValue(req.body.description),
+    req.body.nameAnimator,
+    req.body.idWorkshop
+  ];
+  req.getConnection(function (err, connection) {
+      connection.query(query, value, function (err, rows, fields){
+        if(err){
+          console.log(err);
+          return res.status(500).json("Error in adding new workshop");
+        }
+        console.log("Edit-workshop query sent");
+        callback(rows);
+      })
+    }
+  )
+};
 
 function trueValue(string){
   if(string === ''){

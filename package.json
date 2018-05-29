@@ -21,6 +21,7 @@
     "@angular/platform-browser-dynamic": "^6.0.2",
     "@angular/router": "^6.0.2",
     "angular-calendar": "^0.25.2",
+    "angular-datepicker": "^1.0.5",
     "bcrypt": "^2.0.1",
     "core-js": "^2.5.4",
     "date-fns": "^1.29.0",
@@ -28,6 +29,7 @@
     "express-myconnection": "^1.0.4",
     "jsonwebtoken": "^8.2.1",
     "ng-bootstrap": "^1.6.3",
+    "ng-pick-datetime": "^6.0.4",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"
   },

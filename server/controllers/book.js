@@ -87,13 +87,13 @@ module.exports.update = function(req, callback){
   let query = 'UPDATE book SET titleBook = ?, ISBN = ?, summary = ?, srcImage = ?, price = ?, nbStock = ?, personnalizedWord = ?, trends = ?, idCategory = ?, idPublisher = ? WHERE idBook = ?';
   const values = [
     req.body.titleBook,
-    req.body.ISBN,
-    req.body.summary,
+    trueValue(req.body.ISBN),
+    trueValue(req.body.summary),
     trueValue(req.body.srcImage),
-    req.body.price,
-    req.body.nbStock,
+    trueValue(req.body.price),
+    trueValue(req.body.nbStock),
     trueValue(req.body.personnalizedWord),
-    req.body.trends,
+    trueValue(req.body.trends),
     req.body.idCategory,
     req.body.idPublisher,
     req.body.idBook

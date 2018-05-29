@@ -9,8 +9,9 @@
     </div>
 
     <div class="form-group">
-      <label for="date">Date de l'atelier</label>
-      <input formControlName="dateWorkshop" type="date" class="form-control" id="date">
+      <label for="dateWorkshop" > Date et heure de l'atelier     </label>
+      <input formControlName="dateWorkshop" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" id="dateWorkshop" class="form-control" placeholder="Cliquez pour afficher un calendrier">
+      <owl-date-time #dt></owl-date-time>
     </div>
 
     <div class="form-group">
@@ -48,6 +49,6 @@
     </div>
 
     <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('titleWorkshop').invalid || this.formAdd.get('dateWorkshop').invalid ||
-    this.formAdd.get('minAge').value > this.formAdd.get('maxAge').value || this.formAdd.get('nameAnimator').value === '-1'" routerLink="/admin" routerLinkActive="active" >Créer l'atelier</button>
+    this.formAdd.get('minAge').value > this.formAdd.get('maxAge').value || this.formAdd.get('nameAnimator').value === '-1'" routerLink="/admin/atelier" routerLinkActive="active" >Créer l'atelier</button>
   </form>
 </div>
