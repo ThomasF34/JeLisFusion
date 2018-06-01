@@ -12,17 +12,11 @@ import {NavbarComponent} from "../navbar/navbar.component";
 export class LoginComponent implements OnInit {
 
   formLoginUserData : FormGroup;
-  isExpired : boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router) {
-
-    this.logService.change.subscribe(isExpired => {
-      this.isExpired = isExpired;
-      console.log(this.isExpired);
-    });
   }
 
   ngOnInit() {
@@ -43,9 +37,6 @@ export class LoginComponent implements OnInit {
         )
   };
 
-  show(){
-    console.log(this.isExpired);
-  }
 
 
 }
