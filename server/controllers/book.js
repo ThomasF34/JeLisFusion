@@ -33,7 +33,7 @@ module.exports.getAllAuthors = function(req, callback) {
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select * FROM Author", function(err, rows, fields) {
+    connection.query("select * FROM author", function(err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log (err);
@@ -51,7 +51,7 @@ module.exports.getBookByID = function(req, idBook, callback){
     //La requete
     req.getConnection(function (err, connection) {
       //
-      connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, idCategory, idPublisher FROM Book B WHERE B.idBook = ?" , idBook , function (err, rows, fields) {
+      connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, idCategory, idPublisher FROM book B WHERE B.idBook = ?" , idBook , function (err, rows, fields) {
         console.log("Query sent");
         if (err) {
           console.log(err);
@@ -69,7 +69,7 @@ module.exports.getBooksByCat = function(req, idCategory, callback){
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select * FROM Book B WHERE B.idCategory = ? ", idCategory, function (err, rows, fields) {
+    connection.query("select * FROM book B WHERE B.idCategory = ? ", idCategory, function (err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log(err);
@@ -87,7 +87,7 @@ module.exports.getAuthorsByBookID = function(req, idBook, callback){
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select A.idAuthor, A.nameAuthor, A.fNameAuthor from Written W, Author A WHERE W.idBook = ? AND A.idAuthor = W.idAuthor;", idBook , function (err, rows, fields) {
+    connection.query("select A.idAuthor, A.nameAuthor, A.fNameAuthor from written W, author A WHERE W.idBook = ? AND A.idAuthor = W.idAuthor;", idBook , function (err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log(err);
