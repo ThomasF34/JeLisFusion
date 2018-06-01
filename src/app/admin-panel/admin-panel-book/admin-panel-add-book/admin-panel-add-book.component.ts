@@ -8,7 +8,6 @@ import {PublisherService} from "../../../share/service/publisher.service";
 import {Publisher} from "../../../share/model/publisher.models";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LogService} from "../../../share/service/log-service.service";
 import {UserService} from "../../../share/service/user.service";
 
 @Component({
