@@ -77,6 +77,10 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
     });
   }
 
+  onDelete(){
+    console.log("Gonna Delete");
+  }
+
   setTitleWorkshop(event){
     this.workshop.titleWorkshop = event.target.value;
   }

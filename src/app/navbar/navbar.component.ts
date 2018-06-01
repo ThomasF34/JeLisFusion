@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit{
 
   public admin = this.userService.getAdmin().subscribe(bool => { this.admin = bool; });
 
-  constructor(private userService: UserService){}
+  constructor(public userService: UserService){}
 
   ngOnInit() {
   }

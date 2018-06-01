@@ -2,7 +2,7 @@
 
 <div class="generalContainer">
   <div class="row categoryButtons">
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier()">Tous les livres</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier(0, '0')">Tous les livres</button>
     <button type="button"  class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier(1,'3 à 6 ans')">3 à 6 ans</button>
     <button type="button"  class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier(2,'6 à 9 ans')">6 à 9 ans</button>
     <button type="button"  class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier(3,'9 à 13 ans')">9 à 13 ans</button>

@@ -15,7 +15,7 @@ export class WorkshopComponent implements OnInit {
 
   public workshop: Workshop;
   public idWorkshop : number;
-  constructor(private workshopService: WorkshopService, private route: ActivatedRoute, private userService: UserService) { }
+  constructor(private workshopService: WorkshopService, private route: ActivatedRoute, public userService: UserService) { }
 
   ngOnInit() {
     this.idWorkshop = parseInt(this.route.snapshot.paramMap.get('idWorkshop'), 0);

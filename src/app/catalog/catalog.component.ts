@@ -40,7 +40,7 @@ export class CatalogComponent implements OnInit {
   }
 
   trier(idCategory: number, stringCategory: string) {
-    if (idCategory === undefined) {
+    if (idCategory == 0) {
       this.ngOnInit();
     } else {
       console.log('Asking for category ' + idCategory);
