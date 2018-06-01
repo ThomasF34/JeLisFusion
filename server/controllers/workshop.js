@@ -1,6 +1,6 @@
 module.exports.getAll = function(req, callback){
   req.getConnection(function (err, connection) {
-    connection.query("SELECT * FROM Workshop", function(err, rows, fields){
+    connection.query("SELECT * FROM workshop", function(err, rows, fields){
       console.log("query sent");
       if(err){
         console.log(err);
@@ -15,7 +15,7 @@ module.exports.getAll = function(req, callback){
 
 module.exports.getByID = function(req, idWorkshop, callback){
   req.getConnection(function (err, connection) {
-    connection.query("SELECT * FROM Workshop WHERE idWorkshop = ?", idWorkshop, function(err, rows, fields){
+    connection.query("SELECT * FROM workshop WHERE idWorkshop = ?", idWorkshop, function(err, rows, fields){
       console.log("query sent");
       if(err){
         console.log(err);

@@ -15,7 +15,7 @@ module.exports.getAllBooks = function(req, callback) {
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, nameCategory FROM Book B, Category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
+    connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, nameCategory FROM book B, category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log (err);
@@ -160,7 +160,7 @@ module.exports.add = function(req, callback){
 module.exports.addWritten = function(req, callback){
   console.log("Preparing insert query");
   const values = [];
-  let query = "INSERT INTO Written (idAuthor, idBook) VALUES "
+  let query = "INSERT INTO written (idAuthor, idBook) VALUES "
   req.body.authors.forEach(function(author, index, array){
     //If it's the last occurence
     if(index === array.length-1){

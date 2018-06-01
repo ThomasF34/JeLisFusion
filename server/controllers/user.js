@@ -38,7 +38,7 @@ module.exports.loginUser =  function(req, callback) {
 
 module.exports.isAdmin = function(req, idUser, callback){
   req.getConnection(function (err,connection){
-    connection.query("SELECT admin FROM USERS WHERE idUser = ?", idUser, function (err, rows, fields) {
+    connection.query("SELECT admin FROM users WHERE idUser = ?", idUser, function (err, rows, fields) {
         if (err) {
           console.log(err);
           return res.status(500).send("Error in DB request");
@@ -54,7 +54,7 @@ module.exports.isAdmin = function(req, idUser, callback){
 
 module.exports.getAdmin = function(req, callback){
   req.getConnection(function (err,connection){
-    connection.query("SELECT admin FROM USERS WHERE idUser = ?", idUser, function (err, rows, fields) {
+    connection.query("SELECT admin FROM users WHERE idUser = ?", idUser, function (err, rows, fields) {
       if (err) {
         console.log(err);
         return res.status(500).send("Error in DB request");
