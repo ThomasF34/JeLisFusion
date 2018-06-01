@@ -1,1 +1,1 @@
-web: ./launch.sh
+web : node ./server/server.js
