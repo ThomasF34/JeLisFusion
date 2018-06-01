@@ -3,7 +3,6 @@ import {UserService} from "../share/service/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {NavbarComponent} from "../navbar/navbar.component";
-import {LogService} from "../share/service/log-service.service";
 
 @Component({
   selector: 'app-login',
@@ -18,8 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router,
-    private logService: LogService) {
+    private router: Router) {
 
     this.logService.change.subscribe(isExpired => {
       this.isExpired = isExpired;
