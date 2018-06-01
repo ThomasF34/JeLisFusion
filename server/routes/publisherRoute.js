@@ -13,7 +13,11 @@ publisherRoute.get('/getAllPublishers', (req,res) =>{
 publisherRoute.get('/:idPublisher', (req, res) => {
   console.log("In route Publisher");
   publisherController.getByID(req, req.params.idPublisher, publisher => {
-    return res.status(200).json(publisher);
+    if(publisher === undefined){
+      return res.status(404).json(publisher);
+    } else {
+      return res.status(200).json(publisher);
+    }
   })
 });
 

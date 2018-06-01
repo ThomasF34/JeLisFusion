@@ -15,12 +15,30 @@ module.exports.getAllBooks = function(req, callback) {
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select idBook, titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, nameCategory FROM Book B, Category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
+    connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, nameCategory FROM Book B, Category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log (err);
         console.log("Cannot get books");
-        return res.status(300).json("Cannot get books");
+        return res.status(500).json("Cannot get books");
+      }
+      console.log("Query successfully executed");
+      //Retourner à la route
+      callback(rows);
+    });
+  });
+};
+
+module.exports.getAllAuthors = function(req, callback) {
+  //La requete
+  req.getConnection(function (err, connection) {
+    //
+    connection.query("select * FROM Author", function(err, rows, fields) {
+      console.log("Query sent");
+      if (err) {
+        console.log (err);
+        console.log("Cannot get authors");
+        return res.status(500).json("Cannot get books");
       }
       console.log("Query successfully executed");
       //Retourner à la route
@@ -33,12 +51,12 @@ module.exports.getBookByID = function(req, idBook, callback){
     //La requete
     req.getConnection(function (err, connection) {
       //
-      connection.query("select idBook, titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, idCategory, idPublisher FROM Book B WHERE B.idBook = ?" , idBook , function (err, rows, fields) {
+      connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, idCategory, idPublisher FROM Book B WHERE B.idBook = ?" , idBook , function (err, rows, fields) {
         console.log("Query sent");
         if (err) {
           console.log(err);
           console.log('Cannot get book #'+idBook);
-          return res.status(300).json('Cannot get book #'+idBook);
+          return res.status(500).json('Cannot get book #'+idBook);
         }
         console.log("Query successfully executed");
         //Retourner à la route
@@ -47,16 +65,16 @@ module.exports.getBookByID = function(req, idBook, callback){
     });
 };
 
-module.exports.getBookByCat = function(req, category, callback){
+module.exports.getBooksByCat = function(req, idCategory, callback){
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select idBook, titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, nameCategory, namePublisher FROM Book B, Category C, Publisher P WHERE C.nameCategory = ? AND B.idCategory = C.idCategory AND B.idPublisher = P.idPublisher;", category, function (err, rows, fields) {
+    connection.query("select * FROM Book B WHERE B.idCategory = ? ", idCategory, function (err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log(err);
-        console.log('Cannot get book from '+category);
-        return res.status(300).json('Cannot get book from'+ category);
+        console.log('Cannot get book from '+ idCategory);
+        return res.status(500).json('Cannot get book from'+ idCategory);
       }
       console.log("Query successfully executed");
       //Retourner à la route
@@ -69,12 +87,12 @@ module.exports.getAuthorsByBookID = function(req, idBook, callback){
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select A.nameAuthor, A.fNameAuthor from Written W, Author A WHERE W.idBook = ? AND A.idAuthor = W.idAuthor;", idBook , function (err, rows, fields) {
+    connection.query("select A.idAuthor, A.nameAuthor, A.fNameAuthor from Written W, Author A WHERE W.idBook = ? AND A.idAuthor = W.idAuthor;", idBook , function (err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log(err);
         console.log('Cannot get authors of book #'+idBook);
-        return res.status(300).json('Cannot get authors of book #'+idBook);
+        return res.status(500).json('Cannot get authors of book #'+idBook);
       }
       console.log("Query successfully executed");
       //Retourner à la route
@@ -84,12 +102,12 @@ module.exports.getAuthorsByBookID = function(req, idBook, callback){
 };
 
 module.exports.update = function(req, callback){
-  let query = 'UPDATE book SET titleBook = ?, ISBN = ?, summary = ?, srcImage = ?, price = ?, nbStock = ?, personnalizedWord = ?, trends = ?, idCategory = ?, idPublisher = ? WHERE idBook = ?';
+  let query = 'UPDATE book SET titleBook = ?, ISBN = ?, summary = ?, cover = ?, price = ?, nbStock = ?, personnalizedWord = ?, trends = ?, idCategory = ?, idPublisher = ? WHERE idBook = ?';
   const values = [
     req.body.titleBook,
     trueValue(req.body.ISBN),
     trueValue(req.body.summary),
-    trueValue(req.body.srcImage),
+    "TEST COVER",
     trueValue(req.body.price),
     trueValue(req.body.nbStock),
     trueValue(req.body.personnalizedWord),
@@ -112,12 +130,13 @@ module.exports.update = function(req, callback){
 
 module.exports.add = function(req, callback){
   console.log("Preparing insert query");
-  let query = 'INSERT INTO book (titleBook, ISBN, summary, srcImage, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
+  let query = 'INSERT INTO book (titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
+  console.log(req.body);
   const values = [
     req.body.titleBook,
     trueValue(req.body.ISBN),
     trueValue(req.body.summary),
-    trueValue(req.body.srcImage),
+    "TEST COVER",
     trueValue(req.body.price),
     trueValue(req.body.nbStock),
     trueValue(req.body.personnalizedWord),
@@ -125,6 +144,7 @@ module.exports.add = function(req, callback){
     req.body.idCategory,
     req.body.idPublisher
   ];
+  console.log(values);
   req.getConnection(function (err, connection){
     connection.query(query, values, function (err, rows, fields){
       if(err){
@@ -135,7 +155,34 @@ module.exports.add = function(req, callback){
       callback(rows);
     })
   });
-}
+};
+
+module.exports.addWritten = function(req, callback){
+  console.log("Preparing insert query");
+  const values = [];
+  let query = "INSERT INTO Written (idAuthor, idBook) VALUES "
+  req.body.authors.forEach(function(author, index, array){
+    //If it's the last occurence
+    if(index === array.length-1){
+      //we dont add any column at the end
+      query += '(? , ?)';
+    } else {
+      query += '(?, ?),';
+    }
+    values.push(author.idAuthor);
+    values.push(req.body.idBook);
+  });
+  req.getConnection(function (err, connection){
+    connection.query(query, values, function (err, rows, fields){
+      if(err){
+        console.log(err);
+        return res.status(500).json("Error in adding new written");
+      }
+      console.log("Add-written query sent");
+      callback(rows);
+    })
+  });
+};
 
 function trueValue(string){
   if(string === ''){

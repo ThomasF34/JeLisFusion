@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 
 
@@ -26,14 +26,14 @@ import { AdminPanelListBookComponent } from './admin-panel/admin-panel-book/admi
 import { AdminPanelAddBookComponent } from './admin-panel/admin-panel-book/admin-panel-add-book/admin-panel-add-book.component';
 import { AdminPanelEditBookComponent } from './admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component';
 import { LoginComponent } from './login/login.component';
-import {AuthentGuard} from "./authent.guard";
-import {TokenInterceptorService} from "./share/service/token-interceptor.service";
+import { AuthentGuard} from "./authent.guard";
+import { TokenInterceptorService } from "./share/service/token-interceptor.service";
 import { AdminPanelListWorkshopComponent } from './admin-panel/admin-panel-workshop/admin-panel-list-workshop/admin-panel-list-workshop.component';
 import { AdminPanelNavbarComponent } from './admin-panel/admin-panel-navbar/admin-panel-navbar.component';
 import { AdminPanelAddWorkshopComponent } from './admin-panel/admin-panel-workshop/admin-panel-add-workshop/admin-panel-add-workshop.component';
 import { AdminPanelEditWorkshopComponent } from './admin-panel/admin-panel-workshop/admin-panel-edit-workshop/admin-panel-edit-workshop.component';
-import {OwlDateTimeModule, OwlNativeDateTimeModule} from "ng-pick-datetime";
-import {NativeDateTimeAdapter} from "ng-pick-datetime/date-time/adapter/native-date-time-adapter.class";
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
+import { NativeDateTimeAdapter } from "ng-pick-datetime/date-time/adapter/native-date-time-adapter.class";
 
 registerLocaleData(localeFr);
 

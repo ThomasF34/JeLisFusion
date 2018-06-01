@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {WorkshopService} from "../../../share/service/workshop.service";
 import {V} from "@angular/core/src/render3";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UserService} from "../../../share/service/user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-admin-panel-add-workshop',
@@ -12,7 +15,11 @@ export class AdminPanelAddWorkshopComponent implements OnInit {
 
   public formAdd : FormGroup;
 
-  constructor(private fb : FormBuilder, private workshopService : WorkshopService) { }
+  constructor(
+    private fb : FormBuilder,
+    private workshopService : WorkshopService,
+    private router: Router,
+    private userService: UserService) { }
 
   ngOnInit() {
 
@@ -31,7 +38,17 @@ export class AdminPanelAddWorkshopComponent implements OnInit {
 
   onSubmit(): void{
     this.formAdd.get('dateWorkshop').setValue(new Date(this.formAdd.get('dateWorkshop').value).toLocaleString("fr-FR"));
-    this.workshopService.add(this.formAdd.value).subscribe();
+    this.workshopService.add(this.formAdd.value).subscribe(res => {
+      this.router.navigate(['/admin/atelier']);
+    }, (err: HttpErrorResponse) => {
+      if (err.error.message === 'Token expired') {
+        this.userService.logOutUser();
+      } else if (err.error.message === "Forbidden access") {
+        this.router.navigate(['/accueil']);
+      } else {
+        this.router.navigate(['/admin/atelier']);
+      }
+    });
   }
 
   changeSelect(event, formControlName) {

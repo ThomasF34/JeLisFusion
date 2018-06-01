@@ -32,5 +32,8 @@ export class UserService {
     return localStorage.getItem('token');
   }
 
+  getAdmin(){
+    return this.http.get<any>('api/user/getAdmin');
+  }
 
 }

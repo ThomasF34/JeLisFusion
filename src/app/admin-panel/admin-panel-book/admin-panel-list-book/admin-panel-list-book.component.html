@@ -3,22 +3,25 @@
 <div class="generalContainer">
   <div class="row categoryButtons">
     <button type="button"  class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier()">Tous les livres</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier('6 à 9 ans')">6 à 9 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier('9 à 13 ans')">9 à 13 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 13 ans', 'btn-info': category != 'A partir de 13 ans'}" (click)="trier('A partir de 13 ans')">A partir de 13 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 15 ans', 'btn-info': category != 'A partir de 15 ans'}" (click)="trier('A partir de 15 ans')">A partir de 15 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier('Comics')">Comics</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier(1,'3 à 6 ans')">3 à 6 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier(2,'6 à 9 ans')">6 à 9 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier(3,'9 à 13 ans')">9 à 13 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 13 ans', 'btn-info': category != 'A partir de 13 ans'}" (click)="trier(4,'A partir de 13 ans')">A partir de 13 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 15 ans', 'btn-info': category != 'A partir de 15 ans'}" (click)="trier(5,'A partir de 15 ans')">A partir de 15 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier(6,'Comics')">Comics</button>
     <button type="button" class="btn btn-success pull-right" routerLink="/admin/livre/creer" routerLinkActive="active">Nouveau livre</button>
-
   </div>
-  <table id="table" class="table table-striped table-hover table-sm">
+
+  <form class="form-inline my-2 my-lg-0 pull-right">
+    <input class="form-control mr-sm-2" type="search" id="inputSearch" (keyup)="sortSearchBar()" placeholder="Rechercher par Titre" aria-label="Search">
+  </form>
+  <table id="table" class="table table-striped table-hover table-sm" style="margin-top: 5px" >
     <thead class="thead-light">
     <tr>
       <th class="sortable" (click)="sortTable(0)" scope="col">Titre</th>
       <th scope="col">ISBN</th>
       <th scope="col">Price</th>
-      <th class="sortable" (click)="sortTable(3)" scope="col">Stock</th>
+      <th class="sortable" (click)="sortTableNumeric(3)" scope="col">Stock</th>
     </tr>
     </thead>
     <tbody>

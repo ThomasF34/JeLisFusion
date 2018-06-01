@@ -1,0 +1,45 @@
+<div class="generalContainer">
+  <div class="col-lg-8 offset-lg-2">
+    <div class="col-md-4">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
+    </div>
+
+  </div>
+  <div class="col-lg-8 offset-lg-2">
+    <mwl-calendar-month-view
+      [events]="events"
+      [viewDate]="viewDate"
+      [locale]="locale"
+      [weekStartsOn]="weekStartsOn"
+      [weekendDays]="weekendDays"
+      [activeDayIsOpen]="activeDayIsOpen"
+      (dayClicked)="dayClicked($event.day)"
+      (eventClicked)="eventClicked($event)">
+    </mwl-calendar-month-view>
+  </div>
+
+  <div class="col-lg-8 offset-lg-2">
+    <div
+      class="btn btn-primary"
+      mwlCalendarPreviousView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="activeDayIsOpen = false">
+      Précédent
+    </div>
+    <div
+      class="btn btn-outline-secondary"
+      mwlCalendarToday
+      [(viewDate)]="viewDate">
+      Aujourd'hui
+    </div>
+    <div
+      class="btn btn-primary"
+      mwlCalendarNextView
+      [view]="view"
+      [(viewDate)]="viewDate"
+      (viewDateChange)="activeDayIsOpen = false">
+      Suivant
+    </div>
+  </div>
+  </div>

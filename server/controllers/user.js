@@ -1,3 +1,5 @@
+
+
 const bcrypt = require('bcrypt');
 
 module.exports.register = function(req, callback){
@@ -33,4 +35,33 @@ module.exports.loginUser =  function(req, callback) {
     })
   })
 }
+
+module.exports.isAdmin = function(req, idUser, callback){
+  req.getConnection(function (err,connection){
+    connection.query("SELECT admin FROM USERS WHERE idUser = ?", idUser, function (err, rows, fields) {
+        if (err) {
+          console.log(err);
+          return res.status(500).send("Error in DB request");
+        }
+        if(rows[0] === undefined){
+          callback(false);
+        } else {
+          callback(rows[0].admin);
+        }
+    });
+  });
+};
+
+module.exports.getAdmin = function(req, callback){
+  req.getConnection(function (err,connection){
+    connection.query("SELECT admin FROM USERS WHERE idUser = ?", idUser, function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Error in DB request");
+      }
+      console.log(rows[0].admin);
+      callback(rows[0].admin);
+    });
+  });
+};
 

@@ -16,7 +16,11 @@ categoryRoute.get("/getAllCategories", (req, res) => {
 categoryRoute.get('/:idCategory',(req, res) => {
   console.log("In route Category");
   categoryController.getByID(req, req.params.idCategory, category => {
-    return res.status(200).json(category);
+    if(category === undefined){
+      return res.status(404).json(category);
+    } else {
+      return res.status(200).json(category);
+    }
   })
 });
 

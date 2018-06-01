@@ -9,9 +9,15 @@ import {UserService} from "../share/service/user.service";
 
 export class NavbarComponent implements OnInit{
 
+  public admin = this.userService.getAdmin().subscribe(bool => { this.admin = bool; });
+
   constructor(private userService: UserService){}
 
-  ngOnInit(){}
+  ngOnInit() {
+  }
 
+  redirectUserAccount(){
+
+  }
 }
 

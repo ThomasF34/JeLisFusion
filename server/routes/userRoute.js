@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-
+const token = require('./token');
 // Modules
 const express = require('express');
 const userRoute = express.Router();
@@ -13,7 +13,7 @@ userRoute.post("/register", (req,res) => {
   userController.register(req, user => {
     //Creation of payload for token auth
     let payload = { subject : user.insertId};
-    let token = jwt.sign(payload, 'ItsASecretKey');
+    let token = jwt.sign(payload, 'ItsASecretKey', {expiresIn: 60 * 60});
     res.status(200).json({token});
   })
 });
@@ -23,12 +23,22 @@ userRoute.post("/login", (req,res) => {
     if(user === undefined || !bcrypt.compareSync(req.body.password, user.password)){
       res.status(401).json(user);
     } else {
-      let payload = { subject : user.idUser }
-      let token = jwt.sign(payload, 'ItsASecretKey');
+      const payload = { subject : user.idUser }
+      const token = jwt.sign(payload, 'ItsASecretKey', {expiresIn: 60 * 60});
       res.status(200).json({token});
     }
   })
 });
 
+/*userRoute.get("/getAdmin", token.getUserIdFromToken)
+{
+  return userController.isAdmin(req, req.idUser);
+};*/
+
+userRoute.get("/getAdmin", token.getUserIdFromToken, (req,res) => {
+  userController.isAdmin(req, req.idUser, bool => {
+    return res.status(200).json(bool);
+  });
+});
 
 module.exports = userRoute;

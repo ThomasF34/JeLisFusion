@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
 import {Book} from "../model/book.models";
+import {Author} from "../model/author.models";
 
 @Injectable({
   providedIn: 'root'
@@ -22,10 +23,14 @@ export class BookService {
     return this.http.get<any>('api/book/getBookByID/'+bookID);
   }
 
-  getBooksByCat(categorie: string) {
+  getBooksByCat(idCategory: number) {
     console.log("Asking for books in a category");
-    console.log('api/book/cat/'+categorie);
-    return this.http.get<any>('api/book/cat/'+categorie);
+    console.log('api/book/cat/'+idCategory);
+    return this.http.get<any>('api/book/cat/'+idCategory);
+  }
+
+  getAllAuthors(){
+    return this.http.get<any>('api/author/getAllAuthors');
   }
 
   getAuthors(id: number) {
@@ -35,7 +40,8 @@ export class BookService {
   }
 
   add(book: Book) {
-    return this.http.post<Book>('api/book/add',book);
+    return this.http.post<any>('api/book/add',book);
+
   }
 
   update(book: Book) {
@@ -44,7 +50,7 @@ export class BookService {
   }
 
   deleteWritten(book: Book) {
-    console.log("Deleting book");
+    console.log("Deleting written");
     return this.http.delete('api/book/'+book.idBook+"/deleteWritten");
   }
 
@@ -54,4 +60,9 @@ export class BookService {
   }
 
 
+  updateWritten(book, authorsOfBook: Author[]) {
+    this.deleteWritten(book).subscribe();
+    return this.http.post('api/book/addWritten', {idBook : book.idBook, authors : authorsOfBook});
+
+  }
 }

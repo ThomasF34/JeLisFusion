@@ -13,8 +13,7 @@ bookRoute.get('/getBookByID/:idBook', (req, res) => {
   console.log('Demande un seul book');
   bookController.getBookByID(req, req.params.idBook, book => {
     if(book === undefined){
-      console.log("4O4 Book not found (Redirect?)");
-      return res.status(303).json(book);
+      return res.status(404).json(book);
     } else {
       return res.status(200).json(book);
     }
@@ -27,12 +26,17 @@ bookRoute.get('/getAllBooks',(req, res) => {
   });
 });
 
-bookRoute.get('/cat/:category',(req, res) => {
+bookRoute.get('/getAllAuthors', (req, res) => {
+  bookController.getAllAuthors(req, authors => {
+    return res.status(200).json(authors);
+  })
+});
+
+bookRoute.get('/cat/:idCategory',(req, res) => {
   console.log('Demande une categorie');
-  bookController.getBookByCat(req, req.params.category, books => {
+  bookController.getBooksByCat(req, req.params.idCategory, books => {
     if(books === undefined){
-      console.log("4O4 Book not found (Redirect?)");
-      return res.status(303).json(books);
+      return res.status(404).json(books);
     } else {
       return res.status(200).json(books);
     }
@@ -43,35 +47,40 @@ bookRoute.get('/:idBook/authors',(req, res) => {
   console.log('Asking for authors');
   bookController.getAuthorsByBookID(req, req.params.idBook, authors => {
     if(authors === undefined){
-      console.log("4O4 Book not found (Redirect?)");
-      return res.status(303).json(authors);
+      return res.status(404).json(authors);
     } else {
       return res.status(200).json(authors);
     }
   });
 });
 
-bookRoute.post('/add', (req, res) => {
+bookRoute.post('/addWritten', token.verifyAdmin, (req, res) => {
+  bookController.addWritten(req, back => {
+    return res.status(200);
+  })
+})
+
+bookRoute.post('/add', token.verifyAdmin, (req, res) => {
   console.log("In book route");
   bookController.add(req, book => {
     return res.status(200).json(book);
   })
 });
 
-bookRoute.put('/:idBook/edit',token.verifyToken, (req,res) => {
+bookRoute.put('/:idBook/edit',token.verifyAdmin, (req,res) => {
   bookController.update(req, book => {
     return res.status(200).json(book);
   })
 });
 
-bookRoute.delete('/:idBook/deleteWritten',token.verifyToken, (req,res) => {
+bookRoute.delete('/:idBook/deleteWritten',token.verifyAdmin, (req,res) => {
   bookController.deleteWritten(req, req.params.idBook, book => {
     return res.status(200).json(book);
   })
 });
 
 
-bookRoute.delete('/:idBook/deleteBook',token.verifyToken, (req, res) => {
+bookRoute.delete('/:idBook/deleteBook',token.verifyAdmin, (req, res) => {
   bookController.deleteBook(req, req.params.idBook, book => {
     return res.status(200).json(book);
   })

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {WorkshopService} from "../../../share/service/workshop.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Workshop} from "../../../share/model/workshop.models";
+import {HttpErrorResponse} from "@angular/common/http";
+import {UserService} from "../../../share/service/user.service";
 
 @Component({
   selector: 'app-admin-panel-edit-workshop',
@@ -16,7 +18,11 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
   public workshop : Workshop;
   public date : Date;
 
-  constructor(private fb: FormBuilder, private workshopService: WorkshopService, private route: ActivatedRoute) {
+  constructor(private fb: FormBuilder,
+              private workshopService: WorkshopService,
+              private route: ActivatedRoute,
+              private router: Router,
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -58,7 +64,17 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
 
   onSubmit(): void{
     this.setDateWorkshop();
-    this.workshopService.update(this.workshop).subscribe();
+    this.workshopService.update(this.workshop).subscribe(res => {
+      this.router.navigate(['/admin/livres']);
+    }, (err: HttpErrorResponse) => {
+      if (err.error.message === 'Token expired') {
+        this.userService.logOutUser();
+      } else if (err.error.message === "Forbidden access") {
+        this.router.navigate(['/accueil']);
+      } else {
+        this.router.navigate(['/admin/livres']);
+      }
+    });
   }
 
   setTitleWorkshop(event){

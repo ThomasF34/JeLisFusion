@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {Workshop} from "../share/model/workshop.models";
 import {WorkshopService} from "../share/service/workshop.service";
+import {ActivatedRoute} from "@angular/router";
+import {UserService} from "../share/service/user.service";
 
 @Component({
   selector: 'app-workshop',
@@ -10,13 +12,26 @@ import {WorkshopService} from "../share/service/workshop.service";
 })
 export class WorkshopComponent implements OnInit {
 
-  public workshops: Observable<Workshop[]>;
 
-  constructor(private workshopService: WorkshopService) { }
+  public workshop: Workshop;
+  public idWorkshop : number;
+  constructor(private workshopService: WorkshopService, private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    this.workshopService.getAll().subscribe( workshops => {
-      this.workshops = workshops})
+    this.idWorkshop = parseInt(this.route.snapshot.paramMap.get('idWorkshop'), 0);
+    this.workshopService.getWorkshop(this.idWorkshop).subscribe( workshop => {
+      this.workshop = workshop;
+    });
+
   }
 
+    /*public workshops: Observable<Workshop[]>;
+
+    constructor(private workshopService: WorkshopService) { }
+
+    ngOnInit() {
+      this.workshopService.getAll().subscribe( workshops => {
+        this.workshops = workshops})
+    }
+    */
 }

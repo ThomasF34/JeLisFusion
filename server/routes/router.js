@@ -8,12 +8,15 @@ userRoute = require('./userRoute');
 categoryRoute = require('./categoryRoute');
 publisherRoute = require('./publisherRoute');
 workshopRoute = require('./workshopRoute');
+participateRoute = require('./participateRoute');
 
 //Call for book route
 router.use('/book', booksRoute);
+router.use('/author', booksRoute);
 router.use('/user', userRoute);
 router.use('/category', categoryRoute);
 router.use('/publisher', publisherRoute);
 router.use('/workshop', workshopRoute);
+router.use('/participate', participateRoute);
 
 module.exports = router;

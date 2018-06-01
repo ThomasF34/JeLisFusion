@@ -5,6 +5,7 @@ module.exports.getAll = function(req, callback){
       if(err){
         console.log(err);
         console.log("Cannot get workshop");
+        return res.status(500).json("Error in getting all workshops");
       }
       console.log("Query successfully executed");
       callback(rows);
@@ -19,6 +20,7 @@ module.exports.getByID = function(req, idWorkshop, callback){
       if(err){
         console.log(err);
         console.log("Cannot get workshop");
+        return res.status(500).json("Error in getting workshop");
       }
       console.log("Query successfully executed");
       callback(rows[0]);

@@ -17,9 +17,10 @@ import {PublisherService} from "../share/service/publisher.service";
 export class BookComponent implements OnInit {
 
 
-  public book: Observable<Book>;
+  public book: Book;
   public idBook: number;
 
+  public fileURL;
 
   public authors: Observable<Author[]>;
   public category: Observable<Category>;
@@ -35,6 +36,10 @@ export class BookComponent implements OnInit {
       book => {
         this.getCategory(book.idCategory);
         this.getPublisher(book.idPublisher);
+        const file = new Blob([ book.cover.value ], {
+          type : 'image/jpeg'
+        });
+        this.fileURL = URL.createObjectURL(file);
         this.book = book},
       error => {
         this.router.navigate(['/accueil']);

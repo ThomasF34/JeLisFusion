@@ -9,7 +9,7 @@
     <!--Grid column-->
     <div class="col-md-5">
 
-      <img *ngIf="book !== undefined" src="assets/img/{{book.idBook}}.png" class="img-fluid" alt="">
+      <img *ngIf="book !== undefined && fileURL !== undefined" [src]="fileURL" class="img-fluid" alt="">
 
     </div>
     <!--Grid column-->

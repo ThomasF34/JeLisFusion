@@ -27,25 +27,29 @@ export class CatalogComponent implements OnInit {
   }
 
   trimSummary(summary) {
-    const list = summary.split(".");
-    if(list.length >= 3){
-      return list[0] + "." + list[1] + "." + list[2] + "...";
-    } else {
+    if(summary === undefined || summary === null){
       return summary;
+    } else {
+      const list = summary.split(".");
+      if (list.length >= 3) {
+        return list[0] + "." + list[1] + "." + list[2] + "...";
+      } else {
+        return summary;
+      }
     }
   }
 
-  trier(category: string) {
-    if(category === undefined){
+  trier(idCategory: number, stringCategory: string) {
+    if (idCategory === undefined) {
       this.ngOnInit();
     } else {
-      console.log('Asking for category ' + category);
-      this.bookService.getBooksByCat(category).subscribe(books => {
+      console.log('Asking for category ' + idCategory);
+      this.bookService.getBooksByCat(idCategory).subscribe(books => {
         this.books = books;
-        this.category = category;
+        this.category = stringCategory;
+        console.log(idCategory);
+        console.log(books);
       });
     }
   }
-
-
 }

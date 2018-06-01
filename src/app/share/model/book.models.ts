@@ -3,7 +3,7 @@ export interface Book {
   titleBook: string;
   ISBN: string;
   summary: string;
-  srcImage: string;
+  cover: File;
   price: number;
   nbStock: number;
   personnalizedWord: string;

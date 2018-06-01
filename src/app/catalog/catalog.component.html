@@ -2,12 +2,12 @@
   <h1 class="my-4">Catalogue <span *ngIf="category !== null">- {{category}}</span></h1>
   <div class="row categoryButtons">
     <button type="button"  class="btn" [ngClass]="{'btn-success': category === null, 'btn-primary': category !== null}" (click)="trier()">Tous les livres</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier('3 à 6 ans')">3 à 6 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier('6 à 9 ans')">6 à 9 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier('9 à 13 ans')">9 à 13 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 13 ans', 'btn-info': category != 'A partir de 13 ans'}" (click)="trier('A partir de 13 ans')">A partir de 13 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 15 ans', 'btn-info': category != 'A partir de 15 ans'}" (click)="trier('A partir de 15 ans')">A partir de 15 ans</button>
-    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier('Comics')">Comics</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '3 à 6 ans', 'btn-info': category != '3 à 6 ans'}" (click)="trier(1,'3 à 6 ans')">3 à 6 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '6 à 9 ans', 'btn-info': category != '6 à 9 ans'}" (click)="trier(2,'6 à 9 ans')">6 à 9 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == '9 à 13 ans', 'btn-info': category != '9 à 13 ans'}" (click)="trier(3,'9 à 13 ans')">9 à 13 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 13 ans', 'btn-info': category != 'A partir de 13 ans'}" (click)="trier(4,'A partir de 13 ans')">A partir de 13 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'A partir de 15 ans', 'btn-info': category != 'A partir de 15 ans'}" (click)="trier(5,'A partir de 15 ans')">A partir de 15 ans</button>
+    <button type="button"  class="btn" [ngClass]="{'btn-success': category == 'Comics', 'btn-info': category != 'Comics'}" (click)="trier(6,'Comics')">Comics</button>
   </div>
 
   <div class="row">
@@ -15,11 +15,10 @@
       <div class="card h-100">
         <div class="card-header">
           <h4 class="card-title align-middle"><a routerLink="/book/{{book.idBook}}" routerLinkActive="active">{{book.titleBook}}</a></h4>
-
         </div>
         <a href="#"><img class="cardImg" src="assets/img/{{book.idBook}}.png" alt="img {{book.titleBook}}"></a>
         <div class="card-body">
-          <p class="text-justify card-text">{{trimSummary(book.summary)}}</p>
+          <p *ngIf="book.summary !== undefined" class="text-justify card-text">{{trimSummary(book.summary)}}</p>
           <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
         </div>
         <div class="card-footer">

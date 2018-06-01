@@ -1,11 +1,19 @@
 <form [formGroup]="formLoginUserData" class="col-6 rounded mx-auto">
+  <div class="alert alert-danger" role="alert" *ngIf="isExpired | async">
+    Votre session a expirée. Veuillez vous reconnecter.
+  </div>
   <div class="form-group">
     <label for="inputEmail">Adresse Mail</label>
-    <input formControlName="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Entrez votre adresse mail">
+    <input formControlName="email" type="email" class="form-control" [ngClass]="{'is-valid': !this.formLoginUserData.get('email').invalid,'is-invalid' : this.formLoginUserData.get('email').invalid}" id="inputEmail" aria-describedby="emailHelp" placeholder="Entrez votre adresse mail">
+    <div class="invalid-feedback" [ngClass]="{'hidden': !this.formLoginUserData.get('email').invalid,'visible' : this.formLoginUserData.get('email').invalid}">
+      Veuillez saisir une adresse mail valide
+    </div>
   </div>
   <div class="form-group">
     <label for="password">Mot de passe</label>
     <input formControlName="password" type="password" class="form-control" id="password" placeholder="Mot de passe">
   </div>
   <button (click)="loginUser()" type="submit" class="btn btn-success" [disabled]="this.formLoginUserData.get('password').invalid || this.formLoginUserData.get('email').invalid ">Se connecter</button>
+
+  <button (click)="show()" >Je marche seul</button>
 </form>

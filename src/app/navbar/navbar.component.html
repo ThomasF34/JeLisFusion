@@ -13,9 +13,10 @@
     </ul>
 
     <ul  class="navbar-nav navbarRightPart">
-      <li class="nav-item"><a class="nav-link" routerLink="/admin" routerLinkActive="active">Administration</a></li>
       <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" routerLink="/login" routerLinkActive="active">Connexion</a></li>
       <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" routerLink="/register" routerLinkActive="active">Inscription</a></li>
+      <li *ngIf="userService.loggedIn() && admin" class="nav-item"><a class="nav-link" routerLink="/admin" routerLinkActive="active">Administration</a></li>
+      <li *ngIf="userService.loggedIn()" class="nav-item"><a class="nav-link" (click)="userService.redirectUserAccount()">Mon compte</a></li>
       <li *ngIf="userService.loggedIn()" class="nav-item"><a class="nav-link" (click)="userService.logOutUser()">Déconnexion</a></li>
     </ul>
   </div>
