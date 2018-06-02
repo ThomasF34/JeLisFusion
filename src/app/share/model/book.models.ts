@@ -10,5 +10,6 @@ export interface Book {
   trends: boolean;
   idCategory: number;
   idPublisher: number;
+  nameCategory: string;
 }
 
