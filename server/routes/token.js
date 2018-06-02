@@ -8,12 +8,12 @@ module.exports = {
     console.log("Verifying token");
     if (!req.headers.authorization) {
       //If the authorization is missing from header
-      return res.status(401).send('Unauthorized request');
+      return res.status(401).send({message : 'Unauthorized request'});
     }
 
     let token = req.headers.authorization.split(' ')[1];
     if (token === 'null') {
-      return res.status(401).send('Unauthorized request');
+      return res.status(401).send({message : 'Unauthorized request'});
     }
 
     let payload;
@@ -21,7 +21,7 @@ module.exports = {
       payload = jwt.verify(token, 'ItsASecretKey');
       if (!payload) {
         //if toekn is invalid, there's no payload generated, so we send 401 code
-        return res.status(401).send('Unauthorized request');
+        return res.status(401).send({message : 'Unauthorized request'});
       }
 
       req.idUser = payload.subject;
@@ -33,7 +33,7 @@ module.exports = {
         return res.status(401).send({message :"Token expired"});
       } else if (e instanceof jwt.JsonWebTokenError) {
         console.log("JWT ERROR Token for user " + req.idUser);
-        return res.status(401).send('Unauthorized request');
+        return res.status(401).send({message : 'Unauthorized request'});
       }
     }
   },
@@ -42,12 +42,12 @@ module.exports = {
     console.log("Verifying token");
     if (!req.headers.authorization) {
       //If the authorization is missing from header
-      return res.status(401).send('Unauthorized request');
+      return res.status(401).send({message : 'Unauthorized request'});
     }
 
     let token = req.headers.authorization.split(' ')[1];
     if (token === 'null') {
-      return res.status(401).send('Unauthorized request');
+      return res.status(401).send({message : 'Unauthorized request'});
     }
 
     let payload;
@@ -55,7 +55,7 @@ module.exports = {
       payload = jwt.verify(token, 'ItsASecretKey');
       if (!payload) {
         //if token is invalid, there's no payload generated, so we send 401 code
-        return res.status(401).send('Unauthorized request');
+        return res.status(401).send({message : 'Unauthorized request'});
       }
 
       req.idUser = payload.subject;
@@ -74,7 +74,7 @@ module.exports = {
         return res.status(401).send({message :"Token expired"});
       } else if (e instanceof jwt.JsonWebTokenError) {
         console.log("JWT ERROR Token for user " + req.idUser);
-        return res.status(401).send('Unauthorized request');
+        return res.status(401).send({message : 'Unauthorized request'});
       }
     }
   },

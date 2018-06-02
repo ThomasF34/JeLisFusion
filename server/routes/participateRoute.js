@@ -28,6 +28,36 @@ participateRoute.get('/user/:idUser',(req, res) => {
   });
 });
 
+participateRoute.get('/takenSeat/:idWorkshop', (req, res) =>{
+  participateController.getTakenSeat(req, req.params.idWorkshop, nbTakenSeat => {
+    console.log(nbTakenSeat);
+    return res.status(200).json(nbTakenSeat);
+  });
+});
+
+participateRoute.post('/create', token.verifyToken, (req, res) =>{
+  participateController.create(req, ret => {
+    if(ret === undefined){
+      return res.status(418).json({message : "Already participate"});
+    } else {
+      return res.status(200).json("Successfully added");
+    }
+  });
+});
+
+participateRoute.delete('/deleteFromWksp/:idWorkshop', token.verifyAdmin, (req, res) => {
+  participateController.deleteFromWksp(req, req.params.idWorkshop, participate => {
+    return res.status(200).json(participate);
+  })
+});
+
+participateRoute.delete('/delete/workshop/:idWorkshop/user/:idUser', token.verifyAdmin, (req, res) => {
+  participateController.deleteParticular(req, req.params.idWorkshop, req.params.idUser, participate => {
+    return res.status(200).json(participate);
+  })
+});
+
+
 
 module.exports = participateRoute;
 

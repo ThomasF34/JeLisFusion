@@ -25,4 +25,9 @@ export class WorkshopService {
   update(workshop: Workshop) {
     return this.http.put('api/workshop/'+ workshop.idWorkshop +'/update', workshop);
   }
+
+  delete(id: number) {
+    return this.http.delete('api/workshop/' + id + '/delete');
+  }
+
 }

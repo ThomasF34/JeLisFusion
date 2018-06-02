@@ -1,5 +1,18 @@
 <div class="generalContainer">
   <div class="row">
+
+
+    <div class="col-12 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title align-middle" *ngIf="workshop !== undefined">Informations complémentaires</h4>
+        </div>
+        <div *ngIf="workshop !== undefined" class="card-body">
+          <p>{{workshop.description}}</p>
+        </div>
+      </div>
+    </div>
+
     <div class="col-12 col-md-6">
       <div class="card">
         <div class="card-header">
@@ -23,45 +36,20 @@
           </dl>
         </div>
 
-        <div *ngIf="userService.loggedIn()" class="card-footer">
-          <input type="number" value="1" class="form-control col-3">
+        <form [formGroup]="formParticipate" *ngIf="userService.loggedIn()" class="card-footer">
+          <input type="number" value="1" formControlName="nbSeatToBook" class="form-control col-3" placeholder="Nombre de place à réserver"> <strong>Il reste <span [ngClass]="{'greenFont' : remainingSeat > 0, 'redFont' : remainingSeat <= 0}">{{remainingSeat}}</span> place<span *ngIf="remainingSeat > 1">s</span></strong>
           <div class="float-right">
-            <button type="submit" class="btn btn-success">Réserver</button>
+            <button type="submit" class="btn btn-success" (click)="onSubmit()">Réserver</button>
+          </div>
+        </form>
+        <div *ngIf="!userService.loggedIn()" class="card-footer">
+          <div class="float-right">
+            <button type="submit" class="btn btn-danger">Vous devez être connecté pour réserver</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-12 col-md-6">
-      <div class="card">
-        <div class="card-header">
-          <h4 class="card-title align-middle" *ngIf="workshop !== undefined">{{workshop.titleWorkshop}}</h4>
-        </div>
-        <div class="card-body">
-          <dl class="row lead">
-            <dt class="col-sm-5">Date</dt>
-            <dd *ngIf="workshop !== undefined" class="col-sm-7">{{workshop.dateWorkshop | date:'d MMM y à HH:mm':'':'fr'}}</dd>
 
-            <dt class="col-sm-5">Age recommandé</dt>
-            <dd class="col-sm-7">
-              <p *ngIf="workshop !== undefined">De {{workshop.minAge}} à {{workshop.maxAge}} ans</p>
-            </dd>
-
-            <dt class="col-sm-5 align-middle">Prix</dt>
-            <dd *ngIf="workshop !== undefined" class="col-sm-7">{{workshop.price | currency:'EUR'}}</dd>
-
-            <dt class="col-sm-5 align-middle">Animé par</dt>
-            <dd class="col-sm-7" *ngIf="workshop !== undefined"><strong>{{workshop.nameAnimator}}</strong></dd>
-          </dl>
-        </div>
-
-        <div *ngIf="userService.loggedIn()" class="card-footer">
-          <input type="number" value="1" class="form-control col-3">
-          <div class="float-right">
-            <button type="submit" class="btn btn-success">Réserver</button>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

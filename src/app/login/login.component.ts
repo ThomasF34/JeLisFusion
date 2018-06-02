@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {UserService} from "../share/service/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
-import {NavbarComponent} from "../navbar/navbar.component";
 
 @Component({
   selector: 'app-login',

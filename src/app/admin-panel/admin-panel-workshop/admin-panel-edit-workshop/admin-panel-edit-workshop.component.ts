@@ -5,6 +5,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Workshop} from "../../../share/model/workshop.models";
 import {HttpErrorResponse} from "@angular/common/http";
 import {UserService} from "../../../share/service/user.service";
+import {ParticipateService} from "../../../share/service/participate.service";
+import {Participate} from "../../../share/model/participate.models";
 
 @Component({
   selector: 'app-admin-panel-edit-workshop',
@@ -17,12 +19,15 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
   public id: number;
   public workshop : Workshop;
   public date : Date;
+  public participates : Participate[];
+  public remainingSeat : number;
 
   constructor(private fb: FormBuilder,
               private workshopService: WorkshopService,
               private route: ActivatedRoute,
               private router: Router,
-              private userService: UserService) {
+              private userService: UserService,
+              private participateService: ParticipateService) {
   }
 
   ngOnInit() {
@@ -43,9 +48,6 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
     console.log("ID : " + this.id);
 
     this.workshopService.getWorkshop(this.id).subscribe( workshop => {
-      console.log(workshop.dateWorkshop.toLocaleString());
-      console.log(new Date(workshop.dateWorkshop).toLocaleString());
-      console.log(new Date(workshop.dateWorkshop.toLocaleString()));
       this.workshop = workshop;
       this.formEdit = this.fb.group({
         idWorkshop: [workshop.idWorkshop],
@@ -58,6 +60,10 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
         maxAge: [workshop.maxAge],
         nameAnimator: [workshop.nameAnimator]
       });
+      this.participateService.getTakenSeat(this.id).subscribe( res => { console.log(res); this.remainingSeat = this.workshop.nbSeat - parseInt(res.toString())});
+      this.participateService.getAllParticipateFromWorkshop(this.id).subscribe( participates => {
+        this.participates = participates;
+      })
     })
   }
 
@@ -65,20 +71,41 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
   onSubmit(): void{
     this.setDateWorkshop();
     this.workshopService.update(this.workshop).subscribe(res => {
-      this.router.navigate(['/admin/livres']);
+      this.router.navigate(['/admin/atelier']);
     }, (err: HttpErrorResponse) => {
       if (err.error.message === 'Token expired') {
         this.userService.logOutUser();
       } else if (err.error.message === "Forbidden access") {
         this.router.navigate(['/accueil']);
       } else {
-        this.router.navigate(['/admin/livres']);
+        this.router.navigate(['/admin/atelier']);
       }
     });
   }
 
   onDelete(){
-    console.log("Gonna Delete");
+    this.participateService.deleteFromWorkshop(this.id).subscribe( res => {
+        this.workshopService.delete(this.id).subscribe(res => {
+          this.router.navigate(['/admin/atelier']);
+        }, (err: HttpErrorResponse) => {
+          if (err.error.message === 'Token expired') {
+            this.userService.logOutUser();
+          } else if (err.error.message === "Forbidden access") {
+            this.router.navigate(['/accueil']);
+          } else {
+            this.router.navigate(['/admin/atelier']);
+          }
+        });
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error.message === 'Token expired') {
+          this.userService.logOutUser();
+        } else if (err.error.message === "Forbidden access") {
+          this.router.navigate(['/accueil']);
+        } else {
+          this.router.navigate(['/admin/atelier']);
+        }
+      });
   }
 
   setTitleWorkshop(event){
