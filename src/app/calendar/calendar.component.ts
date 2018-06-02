@@ -22,7 +22,6 @@ import {
 
 import { CustomDateFormatter } from './custom-date-formatter.provider';
 import {Workshop} from "../share/model/workshop.models";
-import {forEach} from "@angular/router/src/utils/collection";
 import {Router} from "@angular/router";
 
 
@@ -64,7 +63,7 @@ export class CalendarComponent implements OnInit{
   locale: string = 'fr';
   weekStartsOn: number = DAYS_OF_WEEK.MONDAY;
   weekendDays: number[] = [DAYS_OF_WEEK.SATURDAY, DAYS_OF_WEEK.SUNDAY];
-  activeDayIsOpen: boolean = true;
+  activeDayIsOpen: boolean = false;
   view: string = 'month';
   viewDate: Date = new Date();
 

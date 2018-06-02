@@ -52,7 +52,7 @@ module.exports.isAdmin = function(req, idUser, callback){
   });
 };
 
-module.exports.getAdmin = function(req, callback){
+/*module.exports.getAdmin = function(req, callback){
   req.getConnection(function (err,connection){
     connection.query("SELECT admin FROM users WHERE idUser = ?", idUser, function (err, rows, fields) {
       if (err) {
@@ -63,5 +63,16 @@ module.exports.getAdmin = function(req, callback){
       callback(rows[0].admin);
     });
   });
-};
+};*/
 
+module.exports.get = function(req, idUser, callback){
+  req.getConnection(function (err,connection){
+    connection.query("SELECT idUser, nameUser, fNameUser, email FROM users WHERE idUser = ?", idUser, function (err, rows, fields) {
+      if (err) {
+        console.log(err);
+        return res.status(500).send("Error in DB request");
+      }
+      callback(rows[0]);
+    });
+  })
+}

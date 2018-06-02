@@ -6,3 +6,11 @@ export interface Participate{
   fNameUser: string;
 }
 
+export interface ParticipateWithWorkshop{
+  idWorkshop: number;
+  idUser: number;
+  nbSeat: number;
+  titleWorkshop: string;
+  dateWorkshop: string;
+  price: number;
+}

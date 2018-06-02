@@ -79,6 +79,19 @@ module.exports.update = function(req, callback){
   )
 };
 
+module.exports.delete = function(req, idWorkshop, callback){
+  req.getConnection(function (err, connection){
+    connection.query("DELETE FROM workshop WHERE idWorkshop = ?", idWorkshop, function(err,rows,fiedls){
+      if(err){
+        console.log(err);
+        return res.status(500).json('Error in deleting');
+      }
+      console.log("Delete-workshop query sent")
+      callback(rows);
+    })
+  })
+};
+
 function trueValue(string){
   if(string === ''){
     return null;

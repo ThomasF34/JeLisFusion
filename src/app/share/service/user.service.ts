@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {User} from "../model/user.models";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {b} from "@angular/core/src/render3";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class UserService {
 
   logOutUser(){
     localStorage.removeItem('token');
+    localStorage.removeItem('admin')
     this.router.navigate(['/accueil']);
   }
 
@@ -36,4 +38,11 @@ export class UserService {
     return this.http.get<any>('api/user/getAdmin');
   }
 
+  getLoggedInInfo(){
+    return this.http.get<any>('api/user/loggedInInfo');
+  }
+
+  isAdmin(): boolean {
+    return (localStorage.getItem('admin') == '1');
+  }
 }

@@ -1,4 +1,5 @@
-<form [formGroup]="formLoginUserData" class="col-6 rounded mx-auto">
+<div class="generalContainer">
+<form [formGroup]="formLoginUserData" class="col-12 col-lg-6 rounded mx-auto">
   <!--<div class="alert alert-danger" role="alert">
     Votre session a expirée. Veuillez vous reconnecter.
   </div>-->
@@ -15,3 +16,4 @@
   </div>
   <button (click)="loginUser()" type="submit" class="btn btn-success" [disabled]="this.formLoginUserData.get('password').invalid || this.formLoginUserData.get('email').invalid ">Se connecter</button>
 </form>
+</div>

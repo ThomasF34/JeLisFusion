@@ -52,4 +52,24 @@ export class CatalogComponent implements OnInit {
       });
     }
   }
+
+  sortSearchBar() {
+    // Declare variables
+    var input, filter, books, title, i;
+    input = document.getElementById("inputSearch");
+    filter = input.value.toUpperCase();
+    books = document.getElementsByClassName("book");
+    // Loop through all table rows, and hide those who don't match the search query
+    for (i = 0; i < books.length; i++) {
+      title = books[i].getElementsByClassName("titleBook")[0];
+      if (title) {
+        console.log(title.innerHTML);
+        if (title.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          books[i].style.display = "";
+        } else {
+          books[i].style.display = "none";
+        }
+      }
+    }
+  }
 }

@@ -1,6 +1,3 @@
-<app-admin-panel-navbar></app-admin-panel-navbar>
-
-
 <div class="generalContainer col-lg-8 offset-lg-2">
   <form [formGroup]="formAdd">
     <div class="form-group">
@@ -9,7 +6,7 @@
     </div>
 
     <div class="form-group">
-      <label for="dateWorkshop" > Date et heure de l'atelier     </label>
+      <label for="dateWorkshop" class="requiredAsterisk"> Date et heure de l'atelier</label>
       <input formControlName="dateWorkshop" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" id="dateWorkshop" class="form-control" placeholder="Cliquez pour afficher un calendrier">
       <owl-date-time #dt></owl-date-time>
     </div>

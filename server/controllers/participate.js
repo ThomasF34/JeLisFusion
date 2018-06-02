@@ -19,7 +19,7 @@ module.exports.getAllParticipateFromUser = function(req, idUser, callback){
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select * from participate where idUser = ?" , idUser , function (err, rows, fields) {
+    connection.query("select p.idWorkshop, p.idUser, p.nbSeat, w.titleWorkshop, w.dateWorkshop, w.price from participate p, workshop w where p.idUser = ? AND p.idWorkshop = w.idWorkshop" , idUser , function (err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log(err);

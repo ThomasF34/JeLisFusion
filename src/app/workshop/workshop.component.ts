@@ -61,6 +61,9 @@ export class WorkshopComponent implements OnInit {
     });
   }
 
+  parseInt(s : string) : number{
+    return parseInt(s, 0);
+  }
     /*public workshops: Observable<Workshop[]>;
 
     constructor(private workshopService: WorkshopService) { }

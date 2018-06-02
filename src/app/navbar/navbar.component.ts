@@ -14,9 +14,6 @@ export class NavbarComponent implements OnInit{
   constructor(public userService: UserService){}
 
   ngOnInit() {
-  }
-
-  redirectUserAccount(){
 
   }
 }

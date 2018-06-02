@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
       nameUser : ['', Validators.required],
       fNameUser : ['', Validators.required],
       password : ['', Validators.required],
-      email: ['',Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
+      email: ['',Validators.compose([Validators.required, Validators.email])],
       admin : [0],
       registerDate :[null],
     });
@@ -32,13 +32,13 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void{
     this.userService.register(this.formRegister.value).subscribe(
       res => {
-        localStorage.setItem('token', res.token)
+        localStorage.setItem('token', res.token);
         this.router.navigate(['/accueil'])
       },
       error => {
         if(error instanceof HttpErrorResponse){
           if(error.status === 401){
-            this.router.navigate(['/login'])
+            this.router.navigate(['/connexion'])
           }
         }
       }

@@ -23,9 +23,13 @@ userRoute.post("/login", (req,res) => {
     if(user === undefined || !bcrypt.compareSync(req.body.password, user.password)){
       res.status(401).json(user);
     } else {
-      const payload = { subject : user.idUser }
-      const token = jwt.sign(payload, 'ItsASecretKey', {expiresIn: 60 * 60});
-      res.status(200).json({token});
+      userController.isAdmin(req, user.idUser, bool => {
+        const payload = { subject : user.idUser };
+        const token = jwt.sign(payload, 'ItsASecretKey', {expiresIn: 60 * 60});
+        console.log(token);
+        console.log(bool);
+        res.status(200).json({token, bool});
+      })
     }
   })
 });
@@ -38,6 +42,16 @@ userRoute.post("/login", (req,res) => {
 userRoute.get("/getAdmin", token.getUserIdFromToken, (req,res) => {
   userController.isAdmin(req, req.idUser, bool => {
     return res.status(200).json(bool);
+  });
+});
+
+userRoute.get('/loggedInInfo', token.verifyToken, (req, res) => {
+  userController.get(req, req.idUser, user => {
+    if(user === undefined){
+      return res.status(404).json(user);
+    } else {
+      return res.status(200).json(user);
+    }
   });
 });
 

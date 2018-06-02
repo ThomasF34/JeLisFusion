@@ -21,7 +21,8 @@ export class ParticipateService {
   }
 
   deleteFromWorkshop(idWorkshop: number){
-    return this.http.delete('api/participate/deleteFromWkshp/'+ idWorkshop);
+    console.log("Atelier °" +idWorkshop);
+    return this.http.delete('api/participate/deleteFromWorkshop/'+ idWorkshop);
   }
 
   deleteParticular(idWorkshop: number, idUser: number){

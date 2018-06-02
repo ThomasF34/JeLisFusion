@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.formLoginUserData = this.fb.group({
-      email: ['',Validators.compose([Validators.required, Validators.pattern("^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$")])],
+      email: ['',Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
       });
   }
@@ -28,7 +28,8 @@ export class LoginComponent implements OnInit {
   loginUser(){
     this.userService.login(this.formLoginUserData.value).subscribe(
       res => {
-          localStorage.setItem('token', res.token)
+          localStorage.setItem('token', res.token);
+          localStorage.setItem('admin', res.bool);
           this.router.navigate(['/']);
         },
         err => {

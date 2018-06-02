@@ -1,21 +1,26 @@
-<form [formGroup]="formRegister" class="col-6 rounded mx-auto">
-  <h4 class="text-center">Afin de vous inscrire, veuillez remplir ces informations</h4>
-  <div class="form-row form-group">
-    <div class="col">
-      <input formControlName="fNameUser" type="text" class="form-control" placeholder="Prénom">
+<div class="generalContainer">
+  <form [formGroup]="formRegister" class="col-12 col-lg-6 rounded mx-auto">
+    <h4 class="text-center">Afin de vous inscrire, veuillez remplir ces informations</h4>
+    <div class="form-row form-group">
+      <div class="col">
+        <input formControlName="fNameUser" type="text" class="form-control" placeholder="Prénom">
+      </div>
+      <div class="col">
+        <input formControlName="nameUser" type="text" class="form-control" placeholder="Nom">
+      </div>
     </div>
-    <div class="col">
-      <input formControlName="nameUser" type="text" class="form-control" placeholder="Nom">
+    <div class="form-group">
+      <label for="inputEmail">Adresse Mail</label>
+      <input formControlName="email" type="email" class="form-control" [ngClass]="{'is-valid': !this.formRegister.get('email').invalid,'is-invalid' : this.formRegister.get('email').invalid}" id="inputEmail" aria-describedby="emailHelp" placeholder="Entrez votre adresse mail">
+      <small id="emailHelp" class="form-text text-muted">Celle ci sera utilisée pour vous identifier.</small>
+      <div class="invalid-feedback" [ngClass]="{'hidden': !this.formRegister.get('email').invalid,'visible' : this.formRegister.get('email').invalid}">
+        Veuillez saisir une adresse mail valide
+      </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="inputEmail">Adresse Mail</label>
-    <input formControlName="email" type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp" placeholder="Entrez votre adresse mail">
-    <small id="emailHelp" class="form-text text-muted">Celle ci sera utilisée pour vous identifier.</small>
-  </div>
-  <div class="form-group">
-    <label for="password">Mot de passe</label>
-    <input formControlName="password" type="password" class="form-control" id="password" placeholder="Mot de passe">
-  </div>
-  <button (click)="onSubmit()" type="submit" class="btn btn-primary">S'inscrire</button>
-</form>
+    <div class="form-group">
+      <label for="password">Mot de passe</label>
+      <input formControlName="password" type="password" class="form-control" id="password" placeholder="Mot de passe">
+    </div>
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary">S'inscrire</button>
+  </form>
+</div>

@@ -10,15 +10,14 @@ import {HttpClient} from "@angular/common/http";
 })
 
 export class AuthentGuard implements CanActivate {
-  constructor(private userService: UserService, private router: Router, private http: HttpClient) {
+  constructor(private userService: UserService, private router: Router) {
   }
 
   canActivate() : boolean{
     if(this.userService.loggedIn()){
-      console.log(this.userService.getAdmin().subscribe( bool => console.log(bool)));
-      return true;
+      return this.userService.isAdmin();
     }else {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/connexion']);
       return false;
     }
   }

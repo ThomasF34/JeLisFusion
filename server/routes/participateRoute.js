@@ -45,7 +45,8 @@ participateRoute.post('/create', token.verifyToken, (req, res) =>{
   });
 });
 
-participateRoute.delete('/deleteFromWksp/:idWorkshop', token.verifyAdmin, (req, res) => {
+participateRoute.delete('/deleteFromWorkshop/:idWorkshop', token.verifyAdmin, (req, res) => {
+  console.log('Atelier °'+ req.params.idWorkshop);
   participateController.deleteFromWksp(req, req.params.idWorkshop, participate => {
     return res.status(200).json(participate);
   })

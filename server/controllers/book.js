@@ -69,7 +69,7 @@ module.exports.getBooksByCat = function(req, idCategory, callback){
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select * FROM book B WHERE B.idCategory = ? ", idCategory, function (err, rows, fields) {
+    connection.query("select * FROM book B, category c WHERE B.idCategory = ? AND B.idCategory = c.idCategory ", idCategory, function (err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log(err);

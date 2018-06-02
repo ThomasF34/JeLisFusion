@@ -48,23 +48,32 @@ export class AdminPanelEditWorkshopComponent implements OnInit {
     console.log("ID : " + this.id);
 
     this.workshopService.getWorkshop(this.id).subscribe( workshop => {
-      this.workshop = workshop;
-      this.formEdit = this.fb.group({
-        idWorkshop: [workshop.idWorkshop],
-        titleWorkshop: [workshop.titleWorkshop, Validators.required],
-        dateWorkshop: [new Date(workshop.dateWorkshop.toLocaleString()), Validators.required],
-        description: [workshop.description],
-        nbSeat: [workshop.nbSeat],
-        price: [workshop.price],
-        minAge: [workshop.minAge],
-        maxAge: [workshop.maxAge],
-        nameAnimator: [workshop.nameAnimator]
+        this.workshop = workshop;
+        this.formEdit = this.fb.group({
+          idWorkshop: [workshop.idWorkshop],
+          titleWorkshop: [workshop.titleWorkshop, Validators.required],
+          dateWorkshop: [new Date(workshop.dateWorkshop.toLocaleString()), Validators.required],
+          description: [workshop.description],
+          nbSeat: [workshop.nbSeat],
+          price: [workshop.price],
+          minAge: [workshop.minAge],
+          maxAge: [workshop.maxAge],
+          nameAnimator: [workshop.nameAnimator]
+        });
+        this.participateService.getTakenSeat(this.id).subscribe( res => { console.log(res); this.remainingSeat = this.workshop.nbSeat - parseInt(res.toString())});
+        this.participateService.getAllParticipateFromWorkshop(this.id).subscribe( participates => {
+          this.participates = participates;
+        })
+      },
+      (err: HttpErrorResponse) => {
+        if (err.error.message === 'Token expired') {
+          this.userService.logOutUser();
+        } else if (err.error.message === "Forbidden access") {
+          this.router.navigate(['/accueil']);
+        } else {
+          this.router.navigate(['/admin/atelier']);
+        }
       });
-      this.participateService.getTakenSeat(this.id).subscribe( res => { console.log(res); this.remainingSeat = this.workshop.nbSeat - parseInt(res.toString())});
-      this.participateService.getAllParticipateFromWorkshop(this.id).subscribe( participates => {
-        this.participates = participates;
-      })
-    })
   }
 
 

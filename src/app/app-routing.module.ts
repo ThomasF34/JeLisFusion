@@ -14,16 +14,19 @@ import { AdminPanelListWorkshopComponent } from "./admin-panel/admin-panel-works
 import {AdminPanelAddWorkshopComponent} from "./admin-panel/admin-panel-workshop/admin-panel-add-workshop/admin-panel-add-workshop.component";
 import {AdminPanelEditWorkshopComponent} from "./admin-panel/admin-panel-workshop/admin-panel-edit-workshop/admin-panel-edit-workshop.component";
 import {CalendarComponent} from "./calendar/calendar.component";
+import {UserComponent} from "./user/user.component";
 
 const routes: Routes = [
   {path : '', component: AccueilComponent},
   {path : 'accueil', component: AccueilComponent},
 
-  {path: 'register', component: RegisterComponent},
-  {path: 'login', component: LoginComponent},
+  {path: 'inscription', component: RegisterComponent},
+  {path: 'connexion', component: LoginComponent},
 
-  {path: 'book', component: CatalogComponent},
-  {path: 'book/:idBook', component: BookComponent},
+  {path: 'livre', component: CatalogComponent},
+  {path: 'livre/:idBook', component: BookComponent},
+
+  {path: 'utilisateur', component: UserComponent},
 
   {path : 'catalogue', component: CatalogComponent},
   {path : 'calendar', component: CalendarComponent},
@@ -32,7 +35,7 @@ const routes: Routes = [
   {path: 'atelier', component: CalendarComponent},
   {path: 'ateliers', component: CalendarComponent},
 
-  {path: 'admin', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
+  {path: 'admin', component: AdminPanelListBookComponent},
   {path: 'admin/livres', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
   {path: 'admin/livre', component: AdminPanelListBookComponent, canActivate: [AuthentGuard]},
   {path: 'admin/livre/creer', component: AdminPanelAddBookComponent, canActivate: [AuthentGuard]},
