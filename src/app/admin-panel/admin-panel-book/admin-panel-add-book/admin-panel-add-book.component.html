@@ -51,10 +51,6 @@
       <textarea formControlName="personnalizedWord" type="text" class="form-control" id="personnalizedWord"></textarea>
     </div>
 
-    <div class="form-group">
-      <label for="file">Couverture du livre</label>
-      <input type="file" id="file" (change)="changeFileInput($event)">
-    </div>
     <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('titleBook').invalid || this.formAdd.get('nbStock').invalid || this.formAdd.get('idCategory').invalid ||
     this.formAdd.get('idPublisher').value === '-1' || this.formAdd.get('idCategory').value === '-1'" >Créer le livre</button>
   </form>

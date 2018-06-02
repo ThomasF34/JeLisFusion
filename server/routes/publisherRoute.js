@@ -1,6 +1,7 @@
 const express = require('express');
 const publisherRoute = express.Router();
 
+const token = require('./token');
 const publisherController = require('../controllers/publisher');
 
 publisherRoute.get('/getAllPublishers', (req,res) =>{
@@ -20,6 +21,32 @@ publisherRoute.get('/:idPublisher', (req, res) => {
     }
   })
 });
+
+publisherRoute.post('/create', token.verifyAdmin, (req, res) => {
+  publisherController.add(req, publisher => {
+    return res.status(200).json(publisher);
+  })
+});
+
+publisherRoute.put('/:idPublisher/update',token.verifyAdmin,  (req, res) => {
+  publisherController.update(req, publisher => {
+    return res.status(200).json(publisher);
+  })
+});
+
+publisherRoute.put('/:idPublisher/updateBook',token.verifyAdmin, (req,res) => {
+  publisherController.updateBook(req, req.params.idPublisher, publisher => {
+    return res.status(200).json(publisher);
+  })
+});
+
+
+publisherRoute.delete('/:idPublisher/deletePublisher',token.verifyAdmin, (req, res) => {
+  publisherController.deletePublisher(req, req.params.idPublisher, publisher => {
+    return res.status(200).json(publisher);
+  })
+});
+
 
 
 

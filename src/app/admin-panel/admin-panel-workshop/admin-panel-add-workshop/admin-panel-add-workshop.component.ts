@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {WorkshopService} from "../../../share/service/workshop.service";
+import {WorkshopService} from "../../../share/service/workshop/workshop.service";
 import {HttpErrorResponse} from "@angular/common/http";
-import {UserService} from "../../../share/service/user.service";
+import {UserService} from "../../../share/service/user/user.service";
 import {Router} from "@angular/router";
 
 @Component({

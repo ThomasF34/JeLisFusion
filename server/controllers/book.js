@@ -15,7 +15,7 @@ module.exports.getAllBooks = function(req, callback) {
   //La requete
   req.getConnection(function (err, connection) {
     //
-    connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, nameCategory FROM book B, category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
+    connection.query("select idBook, titleBook, ISBN, summary, price, nbStock, personnalizedWord, trends, nameCategory FROM book B, category C WHERE B.idCategory = C.idCategory", function(err, rows, fields) {
       console.log("Query sent");
       if (err) {
         console.log (err);
@@ -29,29 +29,11 @@ module.exports.getAllBooks = function(req, callback) {
   });
 };
 
-module.exports.getAllAuthors = function(req, callback) {
-  //La requete
-  req.getConnection(function (err, connection) {
-    //
-    connection.query("select * FROM author", function(err, rows, fields) {
-      console.log("Query sent");
-      if (err) {
-        console.log (err);
-        console.log("Cannot get authors");
-        return res.status(500).json("Cannot get books");
-      }
-      console.log("Query successfully executed");
-      //Retourner à la route
-      callback(rows);
-    });
-  });
-};
-
 module.exports.getBookByID = function(req, idBook, callback){
     //La requete
     req.getConnection(function (err, connection) {
       //
-      connection.query("select idBook, titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, idCategory, idPublisher FROM book B WHERE B.idBook = ?" , idBook , function (err, rows, fields) {
+      connection.query("select idBook, titleBook, ISBN, summary, price, nbStock, personnalizedWord, trends, idCategory, idPublisher FROM book B WHERE B.idBook = ?" , idBook , function (err, rows, fields) {
         console.log("Query sent");
         if (err) {
           console.log(err);
@@ -102,12 +84,11 @@ module.exports.getAuthorsByBookID = function(req, idBook, callback){
 };
 
 module.exports.update = function(req, callback){
-  let query = 'UPDATE book SET titleBook = ?, ISBN = ?, summary = ?, cover = ?, price = ?, nbStock = ?, personnalizedWord = ?, trends = ?, idCategory = ?, idPublisher = ? WHERE idBook = ?';
+  let query = 'UPDATE book SET titleBook = ?, ISBN = ?, summary = ?, price = ?, nbStock = ?, personnalizedWord = ?, trends = ?, idCategory = ?, idPublisher = ? WHERE idBook = ?';
   const values = [
     req.body.titleBook,
     trueValue(req.body.ISBN),
     trueValue(req.body.summary),
-    "TEST COVER",
     trueValue(req.body.price),
     trueValue(req.body.nbStock),
     trueValue(req.body.personnalizedWord),
@@ -130,13 +111,11 @@ module.exports.update = function(req, callback){
 
 module.exports.add = function(req, callback){
   console.log("Preparing insert query");
-  let query = 'INSERT INTO book (titleBook, ISBN, summary, cover, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
-  console.log(req.body);
+  let query = 'INSERT INTO book (titleBook, ISBN, summary, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
   const values = [
     req.body.titleBook,
     trueValue(req.body.ISBN),
     trueValue(req.body.summary),
-    "TEST COVER",
     trueValue(req.body.price),
     trueValue(req.body.nbStock),
     trueValue(req.body.personnalizedWord),

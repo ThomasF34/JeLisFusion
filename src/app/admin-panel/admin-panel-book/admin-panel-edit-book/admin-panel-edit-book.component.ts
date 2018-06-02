@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {BookService} from "../../../share/service/book.service";
+import {BookService} from "../../../share/service/book/book.service";
 import {Observable} from "rxjs/internal/Observable";
 import {Author} from "../../../share/model/author.models";
 import {Category} from "../../../share/model/category.models";
 import {Book} from "../../../share/model/book.models";
 import {Publisher} from "../../../share/model/publisher.models";
-import {PublisherService} from "../../../share/service/publisher.service";
-import {CategoryService} from "../../../share/service/category.service";
+import {PublisherService} from "../../../share/service/publisher/publisher.service";
+import {CategoryService} from "../../../share/service/category/category.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {HttpErrorResponse} from "@angular/common/http";
-import {UserService} from "../../../share/service/user.service";
+import {UserService} from "../../../share/service/user/user.service";
 
 @Component({
   selector: 'app-admin-panel-edit-book',
@@ -72,6 +72,14 @@ export class AdminPanelEditBookComponent implements OnInit {
         idCategory: [book.idCategory, Validators.required],
         idPublisher: [book.idPublisher],
       });
+    }, (err: HttpErrorResponse) => {
+      if (err.error.message === 'Token expired') {
+        this.userService.logOutUser();
+      } else if (err.error.message === "Forbidden access") {
+        this.router.navigate(['/accueil']);
+      } else {
+        this.router.navigate(['/admin/livres']);
+      }
     });
 
     this.bookService.getAuthors(this.id).subscribe( authors => {this.authorsOfBook = authors});
@@ -107,7 +115,6 @@ export class AdminPanelEditBookComponent implements OnInit {
   onDelete(): void{
     this.bookService.deleteWritten(this.book).subscribe();
     this.bookService.deleteBook(this.book).subscribe();
-
   }
 
   setTitle(event){

@@ -19,3 +19,8 @@ body{
 
 @import "../node_modules/angular-calendar/css/angular-calendar.css";
 @import "~ng-pick-datetime/assets/style/picker.min.css";
+
+.requiredAsterisk:after {
+  content:"*";
+  color:red;
+}

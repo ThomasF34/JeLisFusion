@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from "rxjs/internal/Observable";
 import {Workshop} from "../../../share/model/workshop.models";
-import {WorkshopService} from "../../../share/service/workshop.service";
+import {WorkshopService} from "../../../share/service/workshop/workshop.service";
 
 @Component({
   selector: 'app-admin-panel-list-workshop',

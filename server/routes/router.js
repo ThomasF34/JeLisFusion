@@ -9,10 +9,11 @@ categoryRoute = require('./categoryRoute');
 publisherRoute = require('./publisherRoute');
 workshopRoute = require('./workshopRoute');
 participateRoute = require('./participateRoute');
+authorRoute = require('./authorRoute');
 
 //Call for book route
 router.use('/book', booksRoute);
-router.use('/author', booksRoute);
+router.use('/author', authorRoute);
 router.use('/user', userRoute);
 router.use('/category', categoryRoute);
 router.use('/publisher', publisherRoute);

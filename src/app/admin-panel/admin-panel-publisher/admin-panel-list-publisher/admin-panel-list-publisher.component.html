@@ -1,0 +1,22 @@
+<div class="generalContainer">
+  <div class="form-inline float-left" style="max-width: 50%;">
+    <input class="form-control mr-sm-2" type="search" id="inputSearch" (keyup)="sortSearchBar()" placeholder="Rechercher par nom" aria-label="Search">
+  </div>
+
+  <div class="dropdown categoryButtons float-right">
+    <button type="button" class="btn btn-success" routerLink="/admin/editeur/creer" routerLinkActive="active">Nouvel éditeur</button>
+  </div>
+
+  <table id="table" class="table table-striped table-hover table-sm" style="margin-top: 5px" >
+    <thead class="thead-light">
+    <tr>
+      <th class="sortable" (click)="sortTable(0)" scope="col">Editeur</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let publisher of publishers" routerLink="/admin/editeur/{{publisher.idPublisher}}">
+      <td>{{publisher.namePublisher}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

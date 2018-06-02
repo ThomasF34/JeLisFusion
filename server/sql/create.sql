@@ -1,13 +1,13 @@
 
-DROP TABLE booking;
-DROP TABLE Participate;
-DROP TABLE Written;
-DROP TABLE book;
-DROP TABLE publisher;
-DROP TABLE author;
-DROP TABLE category;
-DROP TABLE workshop;
-DROP TABLE users;
+DROP TABLE IF EXISTS booking ;
+DROP TABLE IF EXISTS Participate;
+DROP TABLE IF EXISTS Written;
+DROP TABLE IF EXISTS book;
+DROP TABLE IF EXISTS publisher;
+DROP TABLE IF EXISTS author;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS workshop;
+DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE `users`(
@@ -57,10 +57,9 @@ CREATE TABLE `publisher`(
 
 CREATE TABLE `book`(
   `idBook` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `titleBook` varchar(30) NOT NULL,
+  `titleBook` varchar(200) NOT NULL,
   `ISBN` VARCHAR(20),
   `summary` text,
-  `cover` blob,
   `price` float(6,2) UNSIGNED,
   `nbStock` int(10) UNSIGNED,
   `personnalizedWord` text,
@@ -69,7 +68,7 @@ CREATE TABLE `book`(
   `idPublisher` bigint(10) UNSIGNED,
   CONSTRAINT pk_Book PRIMARY KEY (idBook),
   CONSTRAINT fk_BookCategory FOREIGN KEY (idCategory) REFERENCES category(idCategory),
-  CONSTRAINT fk_BookPublisher FOREIGN KEY (idPublisher) REFERENCES Publisher(idPublisher),
+  CONSTRAINT fk_BookPublisher FOREIGN KEY (idPublisher) REFERENCES publisher(idPublisher),
   CONSTRAINT uniqueISBN UNIQUE (ISBN)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -77,8 +76,8 @@ CREATE TABLE `written`(
   `idAuthor` bigint(10) UNSIGNED NOT NULL,
   `idBook` bigint(10) UNSIGNED NOT NULL,
   CONSTRAINT pk_Written PRIMARY KEY (idBook,idAuthor),
-  CONSTRAINT fk_WrittenBook FOREIGN KEY (idBook) REFERENCES Book(idBook),
-  CONSTRAINT fk_WrittenAuthor FOREIGN KEY (idAuthor) REFERENCES AUTHOR(idAuthor)
+  CONSTRAINT fk_WrittenBook FOREIGN KEY (idBook) REFERENCES book(idBook),
+  CONSTRAINT fk_WrittenAuthor FOREIGN KEY (idAuthor) REFERENCES author(idAuthor)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `participate`(
@@ -86,7 +85,7 @@ CREATE TABLE `participate`(
   `idUser` bigint(10) UNSIGNED NOT NULL,
   `nbSeat` int(3) UNSIGNED NOT NULL,
   CONSTRAINT pk_Participate PRIMARY KEY (idWorkshop,idUser),
-  CONSTRAINT fk_ParticipateWorkshop FOREIGN KEY (idWorkshop) REFERENCES Workshop(idWorkshop),
+  CONSTRAINT fk_ParticipateWorkshop FOREIGN KEY (idWorkshop) REFERENCES workshop(idWorkshop),
   CONSTRAINT fk_ParticipateUser FOREIGN KEY (idUser) REFERENCES users(idUser)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

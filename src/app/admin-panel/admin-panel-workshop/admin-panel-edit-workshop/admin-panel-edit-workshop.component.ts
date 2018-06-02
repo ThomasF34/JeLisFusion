@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {WorkshopService} from "../../../share/service/workshop.service";
+import {WorkshopService} from "../../../share/service/workshop/workshop.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Workshop} from "../../../share/model/workshop.models";
 import {HttpErrorResponse} from "@angular/common/http";
-import {UserService} from "../../../share/service/user.service";
-import {ParticipateService} from "../../../share/service/participate.service";
+import {UserService} from "../../../share/service/user/user.service";
+import {ParticipateService} from "../../../share/service/participate/participate.service";
 import {Participate} from "../../../share/model/participate.models";
 
 @Component({

@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import { WorkshopService} from "../share/service/workshop.service";
+import { WorkshopService} from "../share/service/workshop/workshop.service";
 
 import {
   startOfDay,
@@ -105,5 +105,10 @@ export class CalendarComponent implements OnInit{
 
   eventClicked({ event }: { event: CalendarEvent }): void {
     this.router.navigate(['/atelier/'+event.id])
+  }
+
+  hideIntroShowCalendar(){
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('calendar').style.display = 'block';
   }
 }

@@ -6,7 +6,7 @@ const bookRoute = express.Router();
 const token = require('./token');
 
 //Call for controller
-var bookController = require('../controllers/book');
+const bookController = require('../controllers/book');
 
 
 bookRoute.get('/getBookByID/:idBook', (req, res) => {
@@ -24,12 +24,6 @@ bookRoute.get('/getAllBooks',(req, res) => {
   bookController.getAllBooks(req, books => {
     return res.status(200).json(books);
   });
-});
-
-bookRoute.get('/getAllAuthors', (req, res) => {
-  bookController.getAllAuthors(req, authors => {
-    return res.status(200).json(authors);
-  })
 });
 
 bookRoute.get('/cat/:idCategory',(req, res) => {

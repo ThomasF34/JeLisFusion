@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
-import { UserService } from "./share/service/user.service";
+import { UserService } from "./share/service/user/user.service";
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
 

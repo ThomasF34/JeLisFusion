@@ -1,0 +1,24 @@
+<div class="generalContainer">
+  <div class="form-inline float-left" style="max-width: 50%;">
+    <input class="form-control mr-sm-2" type="search" id="inputSearch" (keyup)="sortSearchBar()" placeholder="Rechercher par nom" aria-label="Search">
+  </div>
+
+  <div class="dropdown categoryButtons float-right">
+    <button type="button" class="btn btn-success" routerLink="/admin/auteur/creer" routerLinkActive="active">Nouvel auteur</button>
+  </div>
+
+  <table id="table" class="table table-striped table-hover table-sm" style="margin-top: 5px" >
+    <thead class="thead-light">
+    <tr>
+      <th class="sortable" (click)="sortTable(0)" scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let author of authors" routerLink="/admin/auteur/{{author.idAuthor}}">
+      <td>{{author.nameAuthor}}</td>
+      <td>{{author.fNameAuthor}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>

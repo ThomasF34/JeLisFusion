@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../share/service/user.service";
-import {ParticipateService} from "../share/service/participate.service";
+import {UserService} from "../share/service/user/user.service";
+import {ParticipateService} from "../share/service/participate/participate.service";
 import {ParticipateWithWorkshop} from "../share/model/participate.models";
 import {User} from "../share/model/user.models";
 import {HttpErrorResponse} from "@angular/common/http";

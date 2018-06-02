@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from "../share/service/book.service";
+import {BookService} from "../share/service/book/book.service";
 import {Observable} from "rxjs/internal/Observable";
 import {Book} from "../share/model/book.models";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Author} from "../share/model/author.models";
 import {Category} from "../share/model/category.models";
 import {Publisher} from "../share/model/publisher.models";
-import {CategoryService} from "../share/service/category.service";
-import {PublisherService} from "../share/service/publisher.service";
+import {CategoryService} from "../share/service/category/category.service";
+import {PublisherService} from "../share/service/publisher/publisher.service";
 
 @Component({
   selector: 'app-book',
@@ -35,11 +35,13 @@ export class BookComponent implements OnInit {
     this.bookService.getBook(this.idBook).subscribe(
       book => {
         this.getCategory(book.idCategory);
-        this.getPublisher(book.idPublisher);
-        const file = new Blob([ book.cover.value ], {
+        if(book.idPublisher !== null){
+          this.getPublisher(book.idPublisher);
+        }
+        /*const file = new Blob([ book.cover.value ], {
           type : 'image/jpeg'
         });
-        this.fileURL = URL.createObjectURL(file);
+        this.fileURL = URL.createObjectURL(file);*/
         this.book = book},
       error => {
         this.router.navigate(['/accueil']);

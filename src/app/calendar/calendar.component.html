@@ -1,9 +1,8 @@
-<div class="generalContainer">
+<div class="generalContainer" id="calendar" style="display: none;">
   <div class="col-lg-8 offset-lg-2">
-    <div class="col-md-4">
+    <div class="offset-3 col-6 text-center">
       <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'fr' }}</h3>
     </div>
-
   </div>
   <div class="col-lg-8 offset-lg-2">
     <mwl-calendar-month-view
@@ -16,9 +15,7 @@
       (dayClicked)="dayClicked($event.day)"
       (eventClicked)="eventClicked($event)">
     </mwl-calendar-month-view>
-  </div>
-
-  <div class="col-lg-8 offset-lg-2">
+    <div class="monthButton">
     <div
       class="btn btn-primary"
       mwlCalendarPreviousView
@@ -41,5 +38,29 @@
       (viewDateChange)="activeDayIsOpen = false">
       Suivant
     </div>
+    </div>
   </div>
+</div>
+
+<div class="generalContainer hidden" id="intro">
+  <div class="row">
+    <h4 class="col-12 col-lg-8 offset-lg-2 text-center" style="margin-bottom: 20px;">
+      Vos deux libraires préférées vous proposent des ateliers divers et variés !
+      De la <strong>réécriture de roman</strong> à <strong>l'apprentissage du dessin</strong> en passant par la <strong>découverte de l'origami</strong>, venez découvrir de nouvelles activés dans un cadre ludique et chaleureux
+    </h4>
   </div>
+
+  <div class="col-12 col-lg-8 offset-lg-2 text-center" style="margin-bottom: 20px;">
+    <button class="btn btn-success" (click)="hideIntroShowCalendar()">Découvrir les ateliers</button>
+  </div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <img class="img-fluid" src="../../assets/img/laura.png" alt="Photo de Laura, libraire">
+    </div>
+    <div class="col-12 col-lg-6">
+      <img  class="img-fluid" src="../../assets/img/loreline.png" alt="Photo de Loreline, libraire">
+    </div>
+  </div>
+
+</div>

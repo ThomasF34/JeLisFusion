@@ -12,7 +12,6 @@
     <div class="form-group">
       <label for="inputEmail">Adresse Mail</label>
       <input formControlName="email" type="email" class="form-control" [ngClass]="{'is-valid': !this.formRegister.get('email').invalid,'is-invalid' : this.formRegister.get('email').invalid}" id="inputEmail" aria-describedby="emailHelp" placeholder="Entrez votre adresse mail">
-      <small id="emailHelp" class="form-text text-muted">Celle ci sera utilisée pour vous identifier.</small>
       <div class="invalid-feedback" [ngClass]="{'hidden': !this.formRegister.get('email').invalid,'visible' : this.formRegister.get('email').invalid}">
         Veuillez saisir une adresse mail valide
       </div>

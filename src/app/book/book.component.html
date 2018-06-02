@@ -38,7 +38,7 @@
           </dd>
 
           <dt class="col-sm-3 align-middle">Edité par</dt>
-          <dd class="col-sm-9" *ngIf="publisher !== undefined">{{publisher.namePublisher}}</dd>
+          <dd class="col-sm-9"><span *ngIf="publisher !== undefined">{{publisher.namePublisher}}</span></dd>
 
           <dt class="col-sm-3 align-middle">ISBN</dt>
           <dd class="col-sm-9" *ngIf="book !== undefined">{{book.ISBN}}</dd>

@@ -25,9 +25,9 @@
       </div>
     </div>
 
-    <div class="col-12 col-lg-6">
+    <div *ngIf="participates !== undefined" class="col-12 col-lg-6">
       <h4>Ateliers réservés </h4>
-      <table id="table" class="table table-striped table-hover table-sm" style="margin-top: 5px" >
+      <table *ngIf="participates.length != 0" id="table" class="table table-striped table-hover table-sm" style="margin-top: 5px" >
         <thead class="thead-light">
         <tr>
           <th scope="col">Titre</th>
@@ -43,6 +43,11 @@
         </tr>
         </tbody>
       </table>
+
+      <div *ngIf="participates.length == 0">
+        <p>Il semblerait que vous n'ayez réservé aucun atelier. N'essayer pas à découvrir nos ateliers !</p>
+        <div style="margin-top: 30px"><button class="btn btn-success" routerLink="/ateliers" routerLinkActive="active">Découvrir les ateliers</button></div>
+      </div>
     </div>
 
   </div>

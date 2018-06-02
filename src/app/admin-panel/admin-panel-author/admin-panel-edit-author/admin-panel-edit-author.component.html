@@ -1,0 +1,17 @@
+<div class="generalContainer col-lg-8 offset-lg-2">
+  <form [formGroup]="formEdit">
+    <div class="form-group">
+      <label for="nom" class="requiredAsterisk">Nom</label>
+      <input *ngIf="author !== undefined" formControlName="nameAuthor" type="text" class="form-control" id="nom" (change)="setName($event)" [value]="author.nameAuthor" placeholder="Nom de l'auteur">
+    </div>
+    <div class="form-group">
+      <label for="fName"  class="requiredAsterisk">Prénom</label>
+      <input *ngIf="author !== undefined" formControlName="fNameAuthor" type="text" class="form-control" id="fName" (change)="setfName($event)" [value]="author.fNameAuthor" placeholder="Prénom de l'auteur">
+    </div>
+    <div class="form-group">
+      <button (click)="onSubmit()" type="submit" class="btn btn-primary" [disabled]="this.formEdit.get('nameAuthor').invalid || this.formEdit.get('fNameAuthor').invalid" >Editer l'auteur</button>
+
+      <div class="float-right"> <button (click)="onDelete()" class="btn btn-danger" routerLink="/admin/auteur" routerLinkActive="active" >Supprimer le livre</button></div>
+    </div>
+  </form>
+</div>

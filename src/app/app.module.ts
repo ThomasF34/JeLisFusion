@@ -27,13 +27,19 @@ import { AdminPanelAddBookComponent } from './admin-panel/admin-panel-book/admin
 import { AdminPanelEditBookComponent } from './admin-panel/admin-panel-book/admin-panel-edit-book/admin-panel-edit-book.component';
 import { LoginComponent } from './login/login.component';
 import { AuthentGuard} from "./authent.guard";
-import { TokenInterceptorService } from "./share/service/token-interceptor.service";
+import { TokenInterceptorService } from "./share/service/token-interceptor/token-interceptor.service";
 import { AdminPanelListWorkshopComponent } from './admin-panel/admin-panel-workshop/admin-panel-list-workshop/admin-panel-list-workshop.component';
 import { AdminPanelAddWorkshopComponent } from './admin-panel/admin-panel-workshop/admin-panel-add-workshop/admin-panel-add-workshop.component';
 import { AdminPanelEditWorkshopComponent } from './admin-panel/admin-panel-workshop/admin-panel-edit-workshop/admin-panel-edit-workshop.component';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from "ng-pick-datetime";
 import { NativeDateTimeAdapter } from "ng-pick-datetime/date-time/adapter/native-date-time-adapter.class";
 import { UserComponent } from './user/user.component';
+import { AdminPanelListAuthorComponent } from './admin-panel/admin-panel-author/admin-panel-list-author/admin-panel-list-author.component';
+import { AdminPanelAddAuthorComponent } from './admin-panel/admin-panel-author/admin-panel-add-author/admin-panel-add-author.component';
+import { AdminPanelEditAuthorComponent } from './admin-panel/admin-panel-author/admin-panel-edit-author/admin-panel-edit-author.component';
+import { AdminPanelListPublisherComponent } from './admin-panel/admin-panel-publisher/admin-panel-list-publisher/admin-panel-list-publisher.component';
+import { AdminPanelAddPublisherComponent } from './admin-panel/admin-panel-publisher/admin-panel-add-publisher/admin-panel-add-publisher.component';
+import { AdminPanelEditPublisherComponent } from './admin-panel/admin-panel-publisher/admin-panel-edit-publisher/admin-panel-edit-publisher.component';
 
 registerLocaleData(localeFr);
 
@@ -54,7 +60,13 @@ registerLocaleData(localeFr);
     AdminPanelListWorkshopComponent,
     AdminPanelAddWorkshopComponent,
     AdminPanelEditWorkshopComponent,
-    UserComponent
+    UserComponent,
+    AdminPanelListAuthorComponent,
+    AdminPanelAddAuthorComponent,
+    AdminPanelEditAuthorComponent,
+    AdminPanelListPublisherComponent,
+    AdminPanelAddPublisherComponent,
+    AdminPanelEditPublisherComponent
   ],
   imports: [
     BrowserModule,

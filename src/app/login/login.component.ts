@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../share/service/user.service";
+import {UserService} from "../share/service/user/user.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
       res => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('admin', res.bool);
-          this.router.navigate(['/']);
         },
         err => {
           console.log(err) }

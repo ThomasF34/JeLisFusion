@@ -1,0 +1,9 @@
+<div class="generalContainer col-lg-8 offset-lg-2">
+  <form [formGroup]="formAdd">
+    <div class="form-group">
+      <label for="nom" class="requiredAsterisk">Nom de l'éditeur</label>
+      <input formControlName="namePublisher" type="text" class="form-control" id="nom" placeholder="Nom de l'éditeur">
+    </div>
+    <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('namePublisher').invalid" >Créer l'éditeur</button>
+  </form>
+</div>

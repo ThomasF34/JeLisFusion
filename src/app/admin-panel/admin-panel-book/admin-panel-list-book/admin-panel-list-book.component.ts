@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {BookService} from "../../../share/service/book.service";
+import {BookService} from "../../../share/service/book/book.service";
 import {Observable} from "rxjs/internal/Observable";
 import {Book} from "../../../share/model/book.models";
 

@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { BookService } from "../../../share/service/book.service";
+import { BookService } from "../../../share/service/book/book.service";
 import {Observable} from "rxjs/internal/Observable";
 import {Category} from "../../../share/model/category.models";
-import {CategoryService} from "../../../share/service/category.service";
-import {PublisherService} from "../../../share/service/publisher.service";
+import {CategoryService} from "../../../share/service/category/category.service";
+import {PublisherService} from "../../../share/service/publisher/publisher.service";
 import {Publisher} from "../../../share/model/publisher.models";
 import {Router} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
-import {UserService} from "../../../share/service/user.service";
+import {UserService} from "../../../share/service/user/user.service";
 
 @Component({
   selector: 'app-admin-panel-add-book',
@@ -75,6 +75,8 @@ export class AdminPanelAddBookComponent implements OnInit {
     this.formAdd.get(formControlName).setValue(event.target.value);
   }
 
+  /* Trying to handle file sending ....
+
   changeFileInput(event) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
@@ -88,6 +90,6 @@ export class AdminPanelAddBookComponent implements OnInit {
         })
       };
     }
-  }
+  }*/
 }
 
