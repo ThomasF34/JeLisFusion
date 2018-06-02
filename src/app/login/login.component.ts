@@ -15,8 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private router: Router) {
-  }
+    private router: Router){}
 
   ngOnInit() {
     this.formLoginUserData = this.fb.group({
@@ -30,6 +29,7 @@ export class LoginComponent implements OnInit {
       res => {
           localStorage.setItem('token', res.token);
           localStorage.setItem('admin', res.bool);
+          this.router.navigate(['/accueil']);
         },
         err => {
           console.log(err) }

@@ -1,29 +1,57 @@
 <header class="bg-primary text-white">
   <div class="container text-center">
-    <h1>Kids World</h1>
+    <h1>JeLisFusion</h1>
     <p class="lead">La librairie spécialisée dans les livres destinées aux enfants et adolescents</p>
   </div>
 </header>
 
 <div class="generalContainer">
-
   <div class="row">
-    <div class="col-4 indexCol">
-      <p>
-        Horaires
-        Horaires
-        Horaires
-        Horaires
-        Horaires
-        Horaires
-        Horaires
-      </p>
+    <div class="col-md-4 col-12 indexCol">
+      <h4>Horaires </h4>
+      <p style="margin-bottom: 20px;">La librairie JeLisFusion vous accueille du Lundi au Samedi selon les horaires suivants :</p>
+      <dl class="row lead">
+        <dt class="col-sm-6">Lundi</dt>
+        <dd class="col-sm-6">9h-19h</dd>
+        <dt class="col-sm-6">Mardi</dt>
+        <dd class="col-sm-6">9h-19h</dd>
+        <dt class="col-sm-6">Mercredi</dt>
+        <dd class="col-sm-6">9h-19h</dd>
+        <dt class="col-sm-6">Jeudi</dt>
+        <dd class="col-sm-6">10h-18h</dd>
+        <dt class="col-sm-6">Vendredi</dt>
+        <dd class="col-sm-6">9h-19h</dd>
+        <dt class="col-sm-6">Samedi</dt>
+        <dd class="col-sm-6">9h-12h</dd>
+      </dl>
     </div>
-    <div class="col-4 indexCol"> Info ? </div>
-    <div class="col-4 lastIndexCol">
-      Info sur le prochain atelier
-
+    <div class="col-md-4 col-12 indexCol">
+      <h4>Ateliers </h4>
+      <p style="margin-bottom: 20px;">Nos libraires vous proposent des ateliers découvertes dans divers domaines (dessin, lecture, écriture etc.).</p>
+      <div class="col-12 col-lg-8 offset-lg-2 text-center" style="margin-bottom: 20px;">
+        <button class="btn btn-success" routerLink="/ateliers" routerLinkActive="active">Découvrir les ateliers</button>
+      </div>
+    </div>
+    <div class="col-md-4 col-12">
+      <h4 style="margin-bottom: 20px;">Le livre aléatoire</h4>
+      <div class="cardBook">
+        <div class="card h-100">
+          <div class="card-header">
+            <h4 class="card-title align-middle"><a routerLink="/livre/{{book.idBook}}" routerLinkActive="active">{{book.titleBook}}</a></h4>
+          </div>
+          <a><img class="cardImg" src="assets/img/{{book.idBook}}.png" alt="img {{book.titleBook}}"></a>
+          <div class="card-body">
+            <p *ngIf="book.summary !== undefined" class="text-justify card-text">{{trimSummary(book.summary)}}</p>
+            <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
+          </div>
+          <div class="card-footer">
+            <p class="card-text">{{book.nameCategory}}<span style="float:right">{{book.price | currency:'EUR'}}</span></p>
+            <button type="button" class="btn btn-primary">Détails</button>
+            <button *ngIf="book.nbStock > 0" type="button" style="float:right" class="btn btn-success">En stock</button>
+            <button *ngIf="book.nbStock <= 0" type="button" style="float:right" class="btn btn-danger">Indisponible</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
 </div>

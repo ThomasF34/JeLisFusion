@@ -12,6 +12,26 @@ header {
   margin-bottom: 50px;
 }
 
-.indexCol {
-  border-right: 2px solid rgba(0, 0, 0, .5);
+@media screen and (min-width: 768px){
+  .indexCol {
+    border-right: 2px solid rgba(0, 0, 0, .5);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .indexCol {
+    border-bottom: 2px solid rgba(0, 0, 0, .5) !important;
+    margin-bottom: 25px;
+  }
+}
+
+.cardImg {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.trendsImg{
+  margin-right: 5px;
 }

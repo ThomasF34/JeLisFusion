@@ -23,6 +23,10 @@ export class BookService {
     return this.http.get<any>('api/book/getBookByID/'+bookID);
   }
 
+  getRandom(): Observable<any>{
+    return this.http.get('api/book/getRandom');
+  }
+
   getBooksByCat(idCategory: number) {
     console.log("Asking for books in a category");
     console.log('api/book/cat/'+idCategory);

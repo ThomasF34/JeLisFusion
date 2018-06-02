@@ -196,3 +196,16 @@ module.exports.deleteWritten = function(req, idBook, callback){
     })
   })
 };
+
+module.exports.getRandom = function(req, callback){
+  req.getConnection(function (err, connection){
+    connection.query("SELECT * FROM book b, category c WHERE b.idCategory = c.idCategory AND b.trends = 1 AND nbStock != 0 ORDER BY RAND() LIMIT 1", function(err,rows,fiedls){
+      if(err){
+        console.log(err);
+        return res.status(500).json('Error in getting random');
+      }
+      console.log("Get-random query sent");
+      callback(rows[0]);
+    })
+  })
+};

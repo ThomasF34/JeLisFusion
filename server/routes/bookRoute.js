@@ -8,6 +8,12 @@ const token = require('./token');
 //Call for controller
 const bookController = require('../controllers/book');
 
+bookRoute.get('/getRandom', (req, res) => {
+  bookController.getRandom(req, book => {
+    return res.status(200).json(book);
+  })
+});
+
 
 bookRoute.get('/getBookByID/:idBook', (req, res) => {
   console.log('Demande un seul book');

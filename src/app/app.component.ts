@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationEnd, Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,21 +6,10 @@ import {NavigationEnd, Router} from "@angular/router";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-  title = 'KidsWorld';
+  title = 'JeLisFusion';
 
-  constructor(private router: Router){}
+  constructor(){}
 
   ngOnInit(){
-
-    this.router.routeReuseStrategy.shouldReuseRoute = function(){
-      return false;
-    };
-
-    this.router.events.subscribe((evt) => {
-      if (evt instanceof NavigationEnd) {
-        this.router.navigated = false;
-        window.scrollTo(0, 0);
-      }
-    });
   }
 }

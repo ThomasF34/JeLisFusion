@@ -9,12 +9,12 @@ import {UserService} from "../share/service/user/user.service";
 
 export class NavbarComponent implements OnInit{
 
-  public admin = this.userService.getAdmin().subscribe(bool => { this.admin = bool; });
+  public admin;
 
   constructor(public userService: UserService){}
 
   ngOnInit() {
-
+    this.admin = localStorage.getItem('admin');
   }
 }
 
