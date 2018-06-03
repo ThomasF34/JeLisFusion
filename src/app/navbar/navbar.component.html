@@ -14,7 +14,7 @@
     <ul  class="navbar-nav navbarRightPart">
       <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" routerLink="/connexion" routerLinkActive="active">Connexion</a></li>
       <li *ngIf="!userService.loggedIn()" class="nav-item"><a class="nav-link" routerLink="/inscription" routerLinkActive="active">Inscription</a></li>
-      <li *ngIf="userService.loggedIn() && admin" class="nav-item dropdown show">
+      <li *ngIf="isAdmin()" class="nav-item dropdown show">
 
           <a class="dropdown-toggle nav-link" href="#" role="button" style="color:rgba(0,0,0,.5)" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Administration
