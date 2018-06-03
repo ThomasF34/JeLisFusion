@@ -23,13 +23,10 @@ userRoute.post("/login", (req,res) => {
     if(user === undefined || !bcrypt.compareSync(req.body.password, user.password)){
       res.status(401).json(user);
     } else {
-      userController.isAdmin(req, user.idUser, bool => {
         const payload = { subject : user.idUser };
         const token = jwt.sign(payload, 'ItsASecretKey', {expiresIn: 60 * 60});
-        console.log(token);
-        console.log(bool);
-        res.status(200).json({token, bool});
-      })
+        const admin = user.admin;
+        res.status(200).json({token, admin});
     }
   })
 });

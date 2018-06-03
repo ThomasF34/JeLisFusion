@@ -37,14 +37,14 @@
       <div class="cardBook">
         <div class="card h-100">
           <div class="card-header">
-            <h4 class="card-title align-middle"><a routerLink="/livre/{{book.idBook}}" routerLinkActive="active">{{book.titleBook}}</a></h4>
+            <h4 class="card-title align-middle" *ngIf="book !== undefined"><a routerLink="/livre/{{book.idBook}}" routerLinkActive="active">{{book.titleBook}}</a></h4>
           </div>
-          <a><img class="cardImg" src="assets/img/{{book.idBook}}.png" alt="img {{book.titleBook}}"></a>
-          <div class="card-body">
+          <a><img *ngIf="book !== undefined" class="cardImg" src="assets/img/{{book.idBook}}.png" alt="img {{book.titleBook}}"></a>
+          <div class="card-body" *ngIf="book !== undefined">
             <p *ngIf="book.summary !== undefined" class="text-justify card-text">{{trimSummary(book.summary)}}</p>
             <p *ngIf="book.trends" class="card-text"><img class="trendsImg" src="assets/img/heart.png"/><strong>Coup de coeur du libraire</strong></p>
           </div>
-          <div class="card-footer">
+          <div class="card-footer" *ngIf="book !== undefined">
             <p class="card-text">{{book.nameCategory}}<span style="float:right">{{book.price | currency:'EUR'}}</span></p>
             <button type="button" class="btn btn-primary">Détails</button>
             <button *ngIf="book.nbStock > 0" type="button" style="float:right" class="btn btn-success">En stock</button>

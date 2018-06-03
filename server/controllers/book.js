@@ -111,7 +111,7 @@ module.exports.update = function(req, callback){
 
 module.exports.add = function(req, callback){
   console.log("Preparing insert query");
-  let query = 'INSERT INTO book (titleBook, ISBN, summary, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?,?)';
+  let query = 'INSERT INTO book (titleBook, ISBN, summary, price, nbStock, personnalizedWord, trends, idCategory, idPublisher) values (?,?,?,?,?,?,?,?,?)';
   const values = [
     req.body.titleBook,
     trueValue(req.body.ISBN),

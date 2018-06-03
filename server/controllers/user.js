@@ -25,7 +25,7 @@ module.exports.register = function(req, callback){
 
 module.exports.loginUser =  function(req, callback) {
   req.getConnection(function (err, connection) {
-    connection.query("SELECT idUser,email, password from users where email = ?", req.body.email, function (err, rows, fields) {
+    connection.query("SELECT idUser,email, password, admin from users where email = ?", req.body.email, function (err, rows, fields) {
       if (err) {
         console.log(err);
         return res.status(500).json("Error in register");

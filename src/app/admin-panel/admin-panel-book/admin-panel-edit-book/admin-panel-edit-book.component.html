@@ -51,6 +51,14 @@
       <label for="personnalizedWord">Mot du libraire</label>
       <textarea *ngIf="book !== undefined" formControlName="personnalizedWord" type="text" [value]="book.personnalizedWord" class="form-control" (change)="setPersonnalizedWord($event)" id="personnalizedWord"></textarea>
     </div>
+
+    <div class="form-group">
+      <button (click)="onSubmit()" type="submit" class="btn btn-primary" [disabled]="this.formEdit.get('titleBook').invalid || this.formEdit.get('nbStock').invalid || this.formEdit.get('idCategory').invalid ||
+    this.formEdit.get('idPublisher').value === '-1' || this.formEdit.get('idCategory').value === '-1'"  routerLink="/admin" routerLinkActive="active" >Editer le livre</button>
+
+      <div class="float-right"> <button (click)="onDelete()" class="btn btn-danger" routerLink="/admin" routerLinkActive="active" >Supprimer le livre</button></div>
+    </div>
+
     <!--[disabled]="this.formEdit.get('titleBook').invalid || this.formEdit.get('ISBN').invalid || this.formEdit.get('summary').invalid
       || this.formEdit.get('price').invalid || this.formEdit.get('nbStock').invalid || this.formEdit.get('idCategory').invalid || this.formEdit.get('idPublisher').invalid ||
       this.formEdit.get('idPublisher').value === '-1' || this.formEdit.get('idCategory').value === '-1'"-->
@@ -101,11 +109,5 @@
       </tbody>
     </table>
 
-    <div class="form-group">
-      <button (click)="onSubmit()" type="submit" class="btn btn-primary" [disabled]="this.formEdit.get('titleBook').invalid || this.formEdit.get('nbStock').invalid || this.formEdit.get('idCategory').invalid ||
-    this.formEdit.get('idPublisher').value === '-1' || this.formEdit.get('idCategory').value === '-1'"  routerLink="/admin" routerLinkActive="active" >Editer le livre</button>
-
-      <div class="float-right"> <button (click)="onDelete()" class="btn btn-danger" routerLink="/admin" routerLinkActive="active" >Supprimer le livre</button></div>
-    </div>
   </form>
 </div>

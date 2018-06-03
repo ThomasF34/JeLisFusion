@@ -90,17 +90,21 @@ export class AdminPanelEditBookComponent implements OnInit {
 
   onSubmit(): void{
     this.bookService.update(this.book).subscribe(res => {
-      this.bookService.updateWritten(this.book, this.authorsOfBook).subscribe(res => {
-        this.router.navigate(['/admin/livres']);
-      }, (err: HttpErrorResponse) => {
-        if (err.error.message === 'Token expired') {
-          this.userService.logOutUser();
-        } else if (err.error.message === "Forbidden access") {
-          this.router.navigate(['/accueil']);
-        } else {
+      if(this.authorsOfBook.length !=0) {
+        this.bookService.updateWritten(this.book, this.authorsOfBook).subscribe(res => {
           this.router.navigate(['/admin/livres']);
-        }
-      })
+        }, (err: HttpErrorResponse) => {
+          if (err.error.message === 'Token expired') {
+            this.userService.logOutUser();
+          } else if (err.error.message === "Forbidden access") {
+            this.router.navigate(['/accueil']);
+          } else {
+            this.router.navigate(['/admin/livres']);
+          }
+        })
+      } else {
+        this.router.navigate(['/admin/livres'])
+      }
     }, (err: HttpErrorResponse) => {
       if (err.error.message === 'Token expired') {
         this.userService.logOutUser();

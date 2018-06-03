@@ -1,13 +1,15 @@
 <div class="generalContainer col-lg-8 offset-lg-2">
   <form [formGroup]="formAdd">
     <div class="form-group">
+      <label for="fName" class="requiredAsterisk">Prénom</label>
+      <input formControlName="fNameAuthor" type="text" class="form-control" id="fName" placeholder="Prénom de l'auteur">
+    </div>
+
+    <div class="form-group">
       <label for="nom" class="requiredAsterisk">Nom</label>
       <input formControlName="nameAuthor" type="text" class="form-control" id="nom" placeholder="Nom de l'auteur">
     </div>
-    <div class="form-group">
-      <label for="fName">Prénom</label>
-      <input formControlName="fNameAuthor" type="text" class="form-control" id="fName" placeholder="Prénom de l'auteur">
-    </div>
+
 
     <button (click)="onSubmit()" type="submit" class="btn btn-success" [disabled]="this.formAdd.get('nameAuthor').invalid || this.formAdd.get('fNameAuthor').invalid" >Créer l'auteur</button>
   </form>
