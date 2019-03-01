@@ -1,27 +1,15 @@
-# KidsWorld
+# JeLisFusion
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.3.
+**Projet accessible via l'adresse** *https://jelisfusion.herokuapp.com*
 
-## Development server
+##Ce projet peut etre installé directement en local en prenant les précautions suivantes :
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Installez NodeJS, Angular CLI, NPM et MySQL.
 
-## Code scaffolding
+Veillez à ce que les dépendances déclarées dans le fichier package.json soient installées, et correspondent aux versions indiquées dans ce même fichier.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Créez votre base de données avec le fichier **Create.sql** et **fillData.sql** présents dans le dossier **KidsWorld/server/sql**
 
-## Build
+Entrez ensuite les informations sur votre base de données MySQL dans le fichier **KidsWorld / server / server.js**
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Lancez ensuite ```ng build``` puis ```node server/server.js``` et rendez vous sur **http://localhost:4000** pour voir l'application web.
