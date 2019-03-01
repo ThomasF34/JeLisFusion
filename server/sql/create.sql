@@ -1,7 +1,5 @@
-
-DROP TABLE IF EXISTS booking ;
-DROP TABLE IF EXISTS Participate;
-DROP TABLE IF EXISTS Written;
+DROP TABLE IF EXISTS participate;
+DROP TABLE IF EXISTS written;
 DROP TABLE IF EXISTS book;
 DROP TABLE IF EXISTS publisher;
 DROP TABLE IF EXISTS author;
@@ -17,7 +15,7 @@ CREATE TABLE `users`(
   `password` varchar(64) NOT NULL,
   `email` varchar(100) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
-  `registerDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `registerDate` datetime NOT NULL,
   CONSTRAINT pk_User PRIMARY KEY (idUser),
   CONSTRAINT uniqueEmail UNIQUE (email)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -84,19 +82,20 @@ CREATE TABLE `participate`(
   `idWorkshop` bigint(10) UNSIGNED NOT NULL,
   `idUser` bigint(10) UNSIGNED NOT NULL,
   `nbSeat` int(3) UNSIGNED NOT NULL,
+  `dateReservation` datetime,
   CONSTRAINT pk_Participate PRIMARY KEY (idWorkshop,idUser),
   CONSTRAINT fk_ParticipateWorkshop FOREIGN KEY (idWorkshop) REFERENCES workshop(idWorkshop),
   CONSTRAINT fk_ParticipateUser FOREIGN KEY (idUser) REFERENCES users(idUser)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `booking`(
-  `idBooking` bigint(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `idUser` bigint(10) UNSIGNED NOT NULL,
-  `idBook` bigint(10) UNSIGNED NOT NULL,
-  `dateBooking` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `quantity`int(10) UNSIGNED NOT NULL,
-  CONSTRAINT pk_booking PRIMARY KEY (idBooking),
-  CONSTRAINT fk_bookingBook FOREIGN KEY (idBook) REFERENCES book(idBook),
-  CONSTRAINT fk_bookingUser FOREIGN KEY (idUser) REFERENCES users(idUser)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TRIGGER defaultDateUser BEFORE INSERT
+ON users FOR EACH ROW
+BEGIN
+  SET NEW.registerDate = SYSDATE();
+end;
 
+CREATE TRIGGER defaultDateParticipate BEFORE INSERT
+ON participate FOR EACH ROW
+BEGIN
+  SET NEW.dateReservation = SYSDATE();
+end;

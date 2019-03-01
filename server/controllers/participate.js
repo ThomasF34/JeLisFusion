@@ -64,7 +64,7 @@ module.exports.create = function(req, callback){
       if (rows[0] !== undefined) {
         callback(undefined);
       } else {
-        connection.query("insert into participate values (?,?,?)", [req.body.idWorkshop, req.idUser, req.body.nbSeatToBook], function (err, rows, fields) {
+        connection.query("insert into participate (idWorkshop, idUser, nbSeat) values (?,?,?)", [req.body.idWorkshop, req.idUser, req.body.nbSeatToBook], function (err, rows, fields) {
           console.log("Query sent");
           if (err) {
             console.log(err);
